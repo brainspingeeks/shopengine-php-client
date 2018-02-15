@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SSB\\Api": "src/"
+      "SSB\\Api\\": "src/"
     }
   },
   "extra": {
