@@ -19,7 +19,7 @@ class Client
         $this->debug = $debug;
     }
 
-    public function get(string $resource, array $parameter)
+    public function get(string $resource, array $parameter = [])
     {
         return $this->makeRequest('GET', $resource, $parameter);
     }
@@ -84,8 +84,11 @@ class Client
                 }
                 return $arr;
             }
-            else {
+            else if (is_object($content)) {
                 return ObjectSerializer::deserialize($content, '\\SSB\\Api\\Model\\' . $content->class, []);
+            }
+            else {
+                return $content;
             }
         }
         catch (\Exception $exception) {
