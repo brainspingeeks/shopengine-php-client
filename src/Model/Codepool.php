@@ -61,7 +61,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'string',
         'description' => 'string',
         'trackingSlug' => 'string',
-        'defaultCOnditionSetAggregateId' => 'string',
+        'defaultConditionSetAggregateId' => 'string',
         'defaultConditionset' => '\SSB\Api\Model\ConditionSet',
         'statistics' => '\SSB\Api\Model\CodepoolStatistics'
     ];
@@ -76,7 +76,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => null,
         'description' => null,
         'trackingSlug' => null,
-        'defaultCOnditionSetAggregateId' => null,
+        'defaultConditionSetAggregateId' => null,
         'defaultConditionset' => null,
         'statistics' => null
     ];
@@ -112,7 +112,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'name',
         'description' => 'description',
         'trackingSlug' => 'trackingSlug',
-        'defaultCOnditionSetAggregateId' => 'defaultCOnditionSetAggregateId',
+        'defaultConditionSetAggregateId' => 'defaultConditionSetAggregateId',
         'defaultConditionset' => 'defaultConditionset',
         'statistics' => 'statistics'
     ];
@@ -127,7 +127,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'setName',
         'description' => 'setDescription',
         'trackingSlug' => 'setTrackingSlug',
-        'defaultCOnditionSetAggregateId' => 'setDefaultCOnditionSetAggregateId',
+        'defaultConditionSetAggregateId' => 'setDefaultConditionSetAggregateId',
         'defaultConditionset' => 'setDefaultConditionset',
         'statistics' => 'setStatistics'
     ];
@@ -142,7 +142,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'getName',
         'description' => 'getDescription',
         'trackingSlug' => 'getTrackingSlug',
-        'defaultCOnditionSetAggregateId' => 'getDefaultCOnditionSetAggregateId',
+        'defaultConditionSetAggregateId' => 'getDefaultConditionSetAggregateId',
         'defaultConditionset' => 'getDefaultConditionset',
         'statistics' => 'getStatistics'
     ];
@@ -211,7 +211,7 @@ class Codepool implements ModelInterface, ArrayAccess
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
-        $this->container['defaultCOnditionSetAggregateId'] = isset($data['defaultCOnditionSetAggregateId']) ? $data['defaultCOnditionSetAggregateId'] : null;
+        $this->container['defaultConditionSetAggregateId'] = isset($data['defaultConditionSetAggregateId']) ? $data['defaultConditionSetAggregateId'] : null;
         $this->container['defaultConditionset'] = isset($data['defaultConditionset']) ? $data['defaultConditionset'] : null;
         $this->container['statistics'] = isset($data['statistics']) ? $data['statistics'] : null;
     }
@@ -254,7 +254,7 @@ class Codepool implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param int $id id
+     * @param int $id App\\Models\\Codepool
      *
      * @return $this
      */
@@ -278,7 +278,7 @@ class Codepool implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string $name App\\Models\\Codepool
      *
      * @return $this
      */
@@ -302,7 +302,7 @@ class Codepool implements ModelInterface, ArrayAccess
     /**
      * Sets description
      *
-     * @param string $description description
+     * @param string $description App\\Models\\Codepool
      *
      * @return $this
      */
@@ -326,7 +326,7 @@ class Codepool implements ModelInterface, ArrayAccess
     /**
      * Sets trackingSlug
      *
-     * @param string $trackingSlug trackingSlug
+     * @param string $trackingSlug App\\Models\\Codepool
      *
      * @return $this
      */
@@ -338,25 +338,25 @@ class Codepool implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets defaultCOnditionSetAggregateId
+     * Gets defaultConditionSetAggregateId
      *
      * @return string
      */
-    public function getDefaultCOnditionSetAggregateId()
+    public function getDefaultConditionSetAggregateId()
     {
-        return $this->container['defaultCOnditionSetAggregateId'];
+        return $this->container['defaultConditionSetAggregateId'];
     }
 
     /**
-     * Sets defaultCOnditionSetAggregateId
+     * Sets defaultConditionSetAggregateId
      *
-     * @param string $defaultCOnditionSetAggregateId defaultCOnditionSetAggregateId
+     * @param string $defaultConditionSetAggregateId App\\Models\\Codepool
      *
      * @return $this
      */
-    public function setDefaultCOnditionSetAggregateId($defaultCOnditionSetAggregateId)
+    public function setDefaultConditionSetAggregateId($defaultConditionSetAggregateId)
     {
-        $this->container['defaultCOnditionSetAggregateId'] = $defaultCOnditionSetAggregateId;
+        $this->container['defaultConditionSetAggregateId'] = $defaultConditionSetAggregateId;
 
         return $this;
     }
