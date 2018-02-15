@@ -196,7 +196,7 @@ class LeftOverValidation extends Validation
         parent::__construct($data);
 
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['target'] = isset($data['target']) ? $data['target'] : null;
+        $this->container['target'] = isset($data['target']) ? $data['target'] : 'sub';
     }
 
     /**

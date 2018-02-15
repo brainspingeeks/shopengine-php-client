@@ -65,6 +65,8 @@ class Code implements ModelInterface, ArrayAccess
         'usages' => 'string',
         'conditionSetActive' => '\SSB\Api\Model\ConditionSet',
         'conditionSetName' => 'string',
+        'conditionSetId' => 'string',
+        'codepoolName' => 'string',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -83,6 +85,8 @@ class Code implements ModelInterface, ArrayAccess
         'usages' => null,
         'conditionSetActive' => null,
         'conditionSetName' => null,
+        'conditionSetId' => null,
+        'codepoolName' => null,
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -122,6 +126,8 @@ class Code implements ModelInterface, ArrayAccess
         'usages' => 'usages',
         'conditionSetActive' => 'conditionSetActive',
         'conditionSetName' => 'conditionSetName',
+        'conditionSetId' => 'conditionSetId',
+        'codepoolName' => 'codepoolName',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -140,6 +146,8 @@ class Code implements ModelInterface, ArrayAccess
         'usages' => 'setUsages',
         'conditionSetActive' => 'setConditionSetActive',
         'conditionSetName' => 'setConditionSetName',
+        'conditionSetId' => 'setConditionSetId',
+        'codepoolName' => 'setCodepoolName',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -158,6 +166,8 @@ class Code implements ModelInterface, ArrayAccess
         'usages' => 'getUsages',
         'conditionSetActive' => 'getConditionSetActive',
         'conditionSetName' => 'getConditionSetName',
+        'conditionSetId' => 'getConditionSetId',
+        'codepoolName' => 'getCodepoolName',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -245,6 +255,8 @@ class Code implements ModelInterface, ArrayAccess
         $this->container['usages'] = isset($data['usages']) ? $data['usages'] : null;
         $this->container['conditionSetActive'] = isset($data['conditionSetActive']) ? $data['conditionSetActive'] : null;
         $this->container['conditionSetName'] = isset($data['conditionSetName']) ? $data['conditionSetName'] : null;
+        $this->container['conditionSetId'] = isset($data['conditionSetId']) ? $data['conditionSetId'] : null;
+        $this->container['codepoolName'] = isset($data['codepoolName']) ? $data['codepoolName'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -483,6 +495,54 @@ class Code implements ModelInterface, ArrayAccess
     public function setConditionSetName($conditionSetName)
     {
         $this->container['conditionSetName'] = $conditionSetName;
+
+        return $this;
+    }
+
+    /**
+     * Gets conditionSetId
+     *
+     * @return string
+     */
+    public function getConditionSetId()
+    {
+        return $this->container['conditionSetId'];
+    }
+
+    /**
+     * Sets conditionSetId
+     *
+     * @param string $conditionSetId conditionSetId
+     *
+     * @return $this
+     */
+    public function setConditionSetId($conditionSetId)
+    {
+        $this->container['conditionSetId'] = $conditionSetId;
+
+        return $this;
+    }
+
+    /**
+     * Gets codepoolName
+     *
+     * @return string
+     */
+    public function getCodepoolName()
+    {
+        return $this->container['codepoolName'];
+    }
+
+    /**
+     * Sets codepoolName
+     *
+     * @param string $codepoolName codepoolName
+     *
+     * @return $this
+     */
+    public function setCodepoolName($codepoolName)
+    {
+        $this->container['codepoolName'] = $codepoolName;
 
         return $this;
     }
