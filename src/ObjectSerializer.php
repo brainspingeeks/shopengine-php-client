@@ -275,14 +275,16 @@ class ObjectSerializer
             $subClass = substr($class, 0, -2);
             $values = [];
             foreach ($data as $key => $value) {
+                $entryClass = $subClass;
+
                 if (isset($value->class)) {
                     $tempClass = '\SSB\Api\Model\\' . $value->class;
                     if (is_subclass_of($tempClass, $subClass)) {
-                        $subClass = $tempClass;
+                        $entryClass = $tempClass;
                     }
                 }
 
-                $values[$key] = self::deserialize($value, $subClass, null);
+                $values[$key] = self::deserialize($value, $entryClass, null);
             }
             return $values;
         }
