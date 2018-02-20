@@ -282,7 +282,7 @@ class ObjectSerializer
                     }
                 }
 
-                $values[] = self::deserialize($value, $subClass, null);
+                $values[$key] = self::deserialize($value, $subClass, null);
             }
             return $values;
         }
