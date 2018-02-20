@@ -1,6 +1,6 @@
 <?php
 /**
- * ConditionSet
+ * AbsoluteModifierCondition
  *
  * PHP version 5
  *
@@ -28,19 +28,17 @@
  */
 
 namespace SSB\Api\Model;
-
-use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * ConditionSet Class Doc Comment
+ * AbsoluteModifierCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ConditionSet implements ModelInterface, ArrayAccess
+class AbsoluteModifierCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +47,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ConditionSet';
+    protected static $swaggerModelName = 'AbsoluteModifierCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +55,10 @@ class ConditionSet implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-        'conditions' => '\SSB\Api\Model\Condition[]',
-        'group' => 'int',
-        'versionId' => 'int',
-        'aggregateId' => 'string'
+        'value' => 'int',
+        'target' => 'string',
+        'applyToArticles' => 'string[]',
+        'percentage' => 'bool'
     ];
 
     /**
@@ -70,11 +67,10 @@ class ConditionSet implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-        'conditions' => null,
-        'group' => null,
-        'versionId' => null,
-        'aggregateId' => null
+        'value' => null,
+        'target' => null,
+        'applyToArticles' => null,
+        'percentage' => null
     ];
 
     /**
@@ -84,7 +80,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -94,7 +90,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -104,11 +100,10 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'conditions' => 'conditions',
-        'group' => 'group',
-        'versionId' => 'versionId',
-        'aggregateId' => 'aggregateId'
+        'value' => 'value',
+        'target' => 'target',
+        'applyToArticles' => 'applyToArticles',
+        'percentage' => 'percentage'
     ];
 
     /**
@@ -117,11 +112,10 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'conditions' => 'setConditions',
-        'group' => 'setGroup',
-        'versionId' => 'setVersionId',
-        'aggregateId' => 'setAggregateId'
+        'value' => 'setValue',
+        'target' => 'setTarget',
+        'applyToArticles' => 'setApplyToArticles',
+        'percentage' => 'setPercentage'
     ];
 
     /**
@@ -130,11 +124,10 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'conditions' => 'getConditions',
-        'group' => 'getGroup',
-        'versionId' => 'getVersionId',
-        'aggregateId' => 'getAggregateId'
+        'value' => 'getValue',
+        'target' => 'getTarget',
+        'applyToArticles' => 'getApplyToArticles',
+        'percentage' => 'getPercentage'
     ];
 
     /**
@@ -145,7 +138,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -155,7 +148,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -165,7 +158,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -182,12 +175,6 @@ class ConditionSet implements ModelInterface, ArrayAccess
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -197,11 +184,12 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
-        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
-        $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
-        $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
+        parent::__construct($data);
+
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['target'] = isset($data['target']) ? $data['target'] : null;
+        $this->container['applyToArticles'] = isset($data['applyToArticles']) ? $data['applyToArticles'] : null;
+        $this->container['percentage'] = isset($data['percentage']) ? $data['percentage'] : false;
     }
 
     /**
@@ -211,7 +199,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -224,127 +212,106 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public function valid()
     {
+        if (!parent::valid()) {
+            return false;
+        }
 
         return true;
     }
 
 
     /**
-     * Gets name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->container['name'];
-    }
-
-    /**
-     * Sets name
-     *
-     * @param string $name The name
-     *
-     * @return $this
-     */
-    public function setName($name)
-    {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets conditions
-     *
-     * @return \SSB\Api\Model\Condition[]
-     */
-    public function getConditions()
-    {
-        return $this->container['conditions'];
-    }
-
-    /**
-     * Sets conditions
-     *
-     * @param \SSB\Api\Model\Condition[] $conditions conditions
-     *
-     * @return $this
-     */
-    public function setConditions($conditions)
-    {
-        $this->container['conditions'] = $conditions;
-
-        return $this;
-    }
-
-    /**
-     * Gets group
+     * Gets value
      *
      * @return int
      */
-    public function getGroup()
+    public function getValue()
     {
-        return $this->container['group'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets group
+     * Sets value
      *
-     * @param int $group group
+     * @param int $value value
      *
      * @return $this
      */
-    public function setGroup($group)
+    public function setValue($value)
     {
-        $this->container['group'] = $group;
+        $this->container['value'] = $value;
 
         return $this;
     }
 
     /**
-     * Gets versionId
-     *
-     * @return int
-     */
-    public function getVersionId()
-    {
-        return $this->container['versionId'];
-    }
-
-    /**
-     * Sets versionId
-     *
-     * @param int $versionId The version id of the object
-     *
-     * @return $this
-     */
-    public function setVersionId($versionId)
-    {
-        $this->container['versionId'] = $versionId;
-
-        return $this;
-    }
-
-    /**
-     * Gets aggregateId
+     * Gets target
      *
      * @return string
      */
-    public function getAggregateId()
+    public function getTarget()
     {
-        return $this->container['aggregateId'];
+        return $this->container['target'];
     }
 
     /**
-     * Sets aggregateId
+     * Sets target
      *
-     * @param string $aggregateId The uuid v4 of the object
+     * @param string $target target
      *
      * @return $this
      */
-    public function setAggregateId($aggregateId)
+    public function setTarget($target)
     {
-        $this->container['aggregateId'] = $aggregateId;
+        $this->container['target'] = $target;
+
+        return $this;
+    }
+
+    /**
+     * Gets applyToArticles
+     *
+     * @return string[]
+     */
+    public function getApplyToArticles()
+    {
+        return $this->container['applyToArticles'];
+    }
+
+    /**
+     * Sets applyToArticles
+     *
+     * @param string[] $applyToArticles applyToArticles
+     *
+     * @return $this
+     */
+    public function setApplyToArticles($applyToArticles)
+    {
+        $this->container['applyToArticles'] = $applyToArticles;
+
+        return $this;
+    }
+
+    /**
+     * Gets percentage
+     *
+     * @return bool
+     */
+    public function getPercentage()
+    {
+        return $this->container['percentage'];
+    }
+
+    /**
+     * Sets percentage
+     *
+     * @param bool $percentage percentage
+     *
+     * @return $this
+     */
+    public function setPercentage($percentage)
+    {
+        $this->container['percentage'] = $percentage;
 
         return $this;
     }

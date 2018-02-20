@@ -193,6 +193,9 @@ class Validation implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -205,6 +208,9 @@ class Validation implements ModelInterface, ArrayAccess
     public function valid()
     {
 
+        if ($this->container['type'] === null) {
+            return false;
+        }
         return true;
     }
 

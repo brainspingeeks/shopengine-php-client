@@ -1,6 +1,6 @@
 <?php
 /**
- * ConditionSet
+ * MinimumCondition
  *
  * PHP version 5
  *
@@ -28,19 +28,17 @@
  */
 
 namespace SSB\Api\Model;
-
-use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * ConditionSet Class Doc Comment
+ * MinimumCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ConditionSet implements ModelInterface, ArrayAccess
+class MinimumCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +47,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ConditionSet';
+    protected static $swaggerModelName = 'MinimumCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +55,9 @@ class ConditionSet implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-        'conditions' => '\SSB\Api\Model\Condition[]',
-        'group' => 'int',
-        'versionId' => 'int',
-        'aggregateId' => 'string'
+        'value' => 'int',
+        'target' => 'string',
+        'conditions' => '\SSB\Api\Model\Condition[]'
     ];
 
     /**
@@ -70,11 +66,9 @@ class ConditionSet implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-        'conditions' => null,
-        'group' => null,
-        'versionId' => null,
-        'aggregateId' => null
+        'value' => null,
+        'target' => null,
+        'conditions' => null
     ];
 
     /**
@@ -84,7 +78,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -94,7 +88,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -104,11 +98,9 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'conditions' => 'conditions',
-        'group' => 'group',
-        'versionId' => 'versionId',
-        'aggregateId' => 'aggregateId'
+        'value' => 'value',
+        'target' => 'target',
+        'conditions' => 'conditions'
     ];
 
     /**
@@ -117,11 +109,9 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'conditions' => 'setConditions',
-        'group' => 'setGroup',
-        'versionId' => 'setVersionId',
-        'aggregateId' => 'setAggregateId'
+        'value' => 'setValue',
+        'target' => 'setTarget',
+        'conditions' => 'setConditions'
     ];
 
     /**
@@ -130,11 +120,9 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'conditions' => 'getConditions',
-        'group' => 'getGroup',
-        'versionId' => 'getVersionId',
-        'aggregateId' => 'getAggregateId'
+        'value' => 'getValue',
+        'target' => 'getTarget',
+        'conditions' => 'getConditions'
     ];
 
     /**
@@ -145,7 +133,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -155,7 +143,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -165,7 +153,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -182,12 +170,6 @@ class ConditionSet implements ModelInterface, ArrayAccess
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -197,11 +179,11 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        parent::__construct($data);
+
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['target'] = isset($data['target']) ? $data['target'] : null;
         $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
-        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
-        $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
-        $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
 
     /**
@@ -211,7 +193,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -224,31 +206,58 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public function valid()
     {
+        if (!parent::valid()) {
+            return false;
+        }
 
         return true;
     }
 
 
     /**
-     * Gets name
+     * Gets value
      *
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getValue()
     {
-        return $this->container['name'];
+        return $this->container['value'];
     }
 
     /**
-     * Sets name
+     * Sets value
      *
-     * @param string $name The name
+     * @param int $value value
      *
      * @return $this
      */
-    public function setName($name)
+    public function setValue($value)
     {
-        $this->container['name'] = $name;
+        $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets target
+     *
+     * @return string
+     */
+    public function getTarget()
+    {
+        return $this->container['target'];
+    }
+
+    /**
+     * Sets target
+     *
+     * @param string $target target
+     *
+     * @return $this
+     */
+    public function setTarget($target)
+    {
+        $this->container['target'] = $target;
 
         return $this;
     }
@@ -273,78 +282,6 @@ class ConditionSet implements ModelInterface, ArrayAccess
     public function setConditions($conditions)
     {
         $this->container['conditions'] = $conditions;
-
-        return $this;
-    }
-
-    /**
-     * Gets group
-     *
-     * @return int
-     */
-    public function getGroup()
-    {
-        return $this->container['group'];
-    }
-
-    /**
-     * Sets group
-     *
-     * @param int $group group
-     *
-     * @return $this
-     */
-    public function setGroup($group)
-    {
-        $this->container['group'] = $group;
-
-        return $this;
-    }
-
-    /**
-     * Gets versionId
-     *
-     * @return int
-     */
-    public function getVersionId()
-    {
-        return $this->container['versionId'];
-    }
-
-    /**
-     * Sets versionId
-     *
-     * @param int $versionId The version id of the object
-     *
-     * @return $this
-     */
-    public function setVersionId($versionId)
-    {
-        $this->container['versionId'] = $versionId;
-
-        return $this;
-    }
-
-    /**
-     * Gets aggregateId
-     *
-     * @return string
-     */
-    public function getAggregateId()
-    {
-        return $this->container['aggregateId'];
-    }
-
-    /**
-     * Sets aggregateId
-     *
-     * @param string $aggregateId The uuid v4 of the object
-     *
-     * @return $this
-     */
-    public function setAggregateId($aggregateId)
-    {
-        $this->container['aggregateId'] = $aggregateId;
 
         return $this;
     }

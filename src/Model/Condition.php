@@ -1,6 +1,6 @@
 <?php
 /**
- * ConditionSet
+ * Condition
  *
  * PHP version 5
  *
@@ -33,23 +33,23 @@ use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * ConditionSet Class Doc Comment
+ * Condition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ConditionSet implements ModelInterface, ArrayAccess
+class Condition implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ConditionSet';
+    protected static $swaggerModelName = 'Condition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,11 +57,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'name' => 'string',
-        'conditions' => '\SSB\Api\Model\Condition[]',
-        'group' => 'int',
-        'versionId' => 'int',
-        'aggregateId' => 'string'
+        'type' => 'string'
     ];
 
     /**
@@ -70,11 +66,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'name' => null,
-        'conditions' => null,
-        'group' => null,
-        'versionId' => null,
-        'aggregateId' => null
+        'type' => null
     ];
 
     /**
@@ -104,11 +96,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'name' => 'name',
-        'conditions' => 'conditions',
-        'group' => 'group',
-        'versionId' => 'versionId',
-        'aggregateId' => 'aggregateId'
+        'type' => 'type'
     ];
 
     /**
@@ -117,11 +105,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'name' => 'setName',
-        'conditions' => 'setConditions',
-        'group' => 'setGroup',
-        'versionId' => 'setVersionId',
-        'aggregateId' => 'setAggregateId'
+        'type' => 'setType'
     ];
 
     /**
@@ -130,11 +114,7 @@ class ConditionSet implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'name' => 'getName',
-        'conditions' => 'getConditions',
-        'group' => 'getGroup',
-        'versionId' => 'getVersionId',
-        'aggregateId' => 'getAggregateId'
+        'type' => 'getType'
     ];
 
     /**
@@ -197,11 +177,11 @@ class ConditionSet implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
-        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
-        $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
-        $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+
+        // Initialize discriminator property with the model name.
+        $discriminator = array_search('type', self::$attributeMap);
+        $this->container[$discriminator] = static::$swaggerModelName;
     }
 
     /**
@@ -213,6 +193,9 @@ class ConditionSet implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -225,126 +208,33 @@ class ConditionSet implements ModelInterface, ArrayAccess
     public function valid()
     {
 
+        if ($this->container['type'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets name
+     * Gets type
      *
      * @return string
      */
-    public function getName()
+    public function getType()
     {
-        return $this->container['name'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets name
+     * Sets type
      *
-     * @param string $name The name
+     * @param string $type type
      *
      * @return $this
      */
-    public function setName($name)
+    public function setType($type)
     {
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets conditions
-     *
-     * @return \SSB\Api\Model\Condition[]
-     */
-    public function getConditions()
-    {
-        return $this->container['conditions'];
-    }
-
-    /**
-     * Sets conditions
-     *
-     * @param \SSB\Api\Model\Condition[] $conditions conditions
-     *
-     * @return $this
-     */
-    public function setConditions($conditions)
-    {
-        $this->container['conditions'] = $conditions;
-
-        return $this;
-    }
-
-    /**
-     * Gets group
-     *
-     * @return int
-     */
-    public function getGroup()
-    {
-        return $this->container['group'];
-    }
-
-    /**
-     * Sets group
-     *
-     * @param int $group group
-     *
-     * @return $this
-     */
-    public function setGroup($group)
-    {
-        $this->container['group'] = $group;
-
-        return $this;
-    }
-
-    /**
-     * Gets versionId
-     *
-     * @return int
-     */
-    public function getVersionId()
-    {
-        return $this->container['versionId'];
-    }
-
-    /**
-     * Sets versionId
-     *
-     * @param int $versionId The version id of the object
-     *
-     * @return $this
-     */
-    public function setVersionId($versionId)
-    {
-        $this->container['versionId'] = $versionId;
-
-        return $this;
-    }
-
-    /**
-     * Gets aggregateId
-     *
-     * @return string
-     */
-    public function getAggregateId()
-    {
-        return $this->container['aggregateId'];
-    }
-
-    /**
-     * Sets aggregateId
-     *
-     * @param string $aggregateId The uuid v4 of the object
-     *
-     * @return $this
-     */
-    public function setAggregateId($aggregateId)
-    {
-        $this->container['aggregateId'] = $aggregateId;
+        $this->container['type'] = $type;
 
         return $this;
     }
