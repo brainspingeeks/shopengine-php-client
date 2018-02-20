@@ -1,6 +1,6 @@
 <?php
 /**
- * MinimumCondition
+ * MinimumArticleCondition
  *
  * PHP version 5
  *
@@ -31,14 +31,14 @@ namespace SSB\Api\Model;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * MinimumCondition Class Doc Comment
+ * MinimumArticleCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class MinimumCondition extends Condition 
+class MinimumArticleCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +47,7 @@ class MinimumCondition extends Condition
       *
       * @var string
       */
-    protected static $swaggerModelName = 'MinimumCondition';
+    protected static $swaggerModelName = 'MinimumArticleCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -55,7 +55,7 @@ class MinimumCondition extends Condition
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'value' => '\SSB\Api\Model\Money',
+        'value' => 'int',
         'target' => 'string',
         'conditions' => '\SSB\Api\Model\Condition[]'
     ];
@@ -244,7 +244,7 @@ class MinimumCondition extends Condition
     /**
      * Gets value
      *
-     * @return \SSB\Api\Model\Money
+     * @return int
      */
     public function getValue()
     {
@@ -254,7 +254,7 @@ class MinimumCondition extends Condition
     /**
      * Sets value
      *
-     * @param \SSB\Api\Model\Money $value value
+     * @param int $value value
      *
      * @return $this
      */

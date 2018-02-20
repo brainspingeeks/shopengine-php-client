@@ -55,7 +55,7 @@ class AbsoluteModifierCondition extends Condition
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'value' => 'int',
+        'value' => '\SSB\Api\Model\Money',
         'target' => 'string',
         'applyToArticles' => 'string[]',
         'percentage' => 'bool'
@@ -171,8 +171,25 @@ class AbsoluteModifierCondition extends Condition
         return self::$swaggerModelName;
     }
 
+    const TARGET_SUB = 'sub';
+    const TARGET_TOTALS = 'totals';
+    const TARGET_SHIPPING = 'shipping';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTargetAllowableValues()
+    {
+        return [
+            self::TARGET_SUB,
+            self::TARGET_TOTALS,
+            self::TARGET_SHIPPING,
+        ];
+    }
     
 
 
@@ -201,6 +218,14 @@ class AbsoluteModifierCondition extends Condition
     {
         $invalidProperties = parent::listInvalidProperties();
 
+        $allowedValues = $this->getTargetAllowableValues();
+        if (!in_array($this->container['target'], $allowedValues)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'target', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -216,6 +241,10 @@ class AbsoluteModifierCondition extends Condition
             return false;
         }
 
+        $allowedValues = $this->getTargetAllowableValues();
+        if (!in_array($this->container['target'], $allowedValues)) {
+            return false;
+        }
         return true;
     }
 
@@ -223,7 +252,7 @@ class AbsoluteModifierCondition extends Condition
     /**
      * Gets value
      *
-     * @return int
+     * @return \SSB\Api\Model\Money
      */
     public function getValue()
     {
@@ -233,7 +262,7 @@ class AbsoluteModifierCondition extends Condition
     /**
      * Sets value
      *
-     * @param int $value value
+     * @param \SSB\Api\Model\Money $value value
      *
      * @return $this
      */
@@ -263,6 +292,15 @@ class AbsoluteModifierCondition extends Condition
      */
     public function setTarget($target)
     {
+        $allowedValues = $this->getTargetAllowableValues();
+        if (!is_null($target) && !in_array($target, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'target', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['target'] = $target;
 
         return $this;

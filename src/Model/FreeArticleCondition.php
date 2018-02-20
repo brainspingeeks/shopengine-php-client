@@ -1,6 +1,6 @@
 <?php
 /**
- * MinimumCondition
+ * FreeArticleCondition
  *
  * PHP version 5
  *
@@ -31,14 +31,14 @@ namespace SSB\Api\Model;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * MinimumCondition Class Doc Comment
+ * FreeArticleCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class MinimumCondition extends Condition 
+class FreeArticleCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +47,7 @@ class MinimumCondition extends Condition
       *
       * @var string
       */
-    protected static $swaggerModelName = 'MinimumCondition';
+    protected static $swaggerModelName = 'FreeArticleCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -55,9 +55,8 @@ class MinimumCondition extends Condition
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'value' => '\SSB\Api\Model\Money',
-        'target' => 'string',
-        'conditions' => '\SSB\Api\Model\Condition[]'
+        'attributeToLoadBy' => 'string',
+        'articleIds' => 'string[]'
     ];
 
     /**
@@ -66,9 +65,8 @@ class MinimumCondition extends Condition
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'value' => null,
-        'target' => null,
-        'conditions' => null
+        'attributeToLoadBy' => null,
+        'articleIds' => null
     ];
 
     /**
@@ -98,9 +96,8 @@ class MinimumCondition extends Condition
      * @var string[]
      */
     protected static $attributeMap = [
-        'value' => 'value',
-        'target' => 'target',
-        'conditions' => 'conditions'
+        'attributeToLoadBy' => 'attributeToLoadBy',
+        'articleIds' => 'articleIds'
     ];
 
     /**
@@ -109,9 +106,8 @@ class MinimumCondition extends Condition
      * @var string[]
      */
     protected static $setters = [
-        'value' => 'setValue',
-        'target' => 'setTarget',
-        'conditions' => 'setConditions'
+        'attributeToLoadBy' => 'setAttributeToLoadBy',
+        'articleIds' => 'setArticleIds'
     ];
 
     /**
@@ -120,9 +116,8 @@ class MinimumCondition extends Condition
      * @var string[]
      */
     protected static $getters = [
-        'value' => 'getValue',
-        'target' => 'getTarget',
-        'conditions' => 'getConditions'
+        'attributeToLoadBy' => 'getAttributeToLoadBy',
+        'articleIds' => 'getArticleIds'
     ];
 
     /**
@@ -166,23 +161,8 @@ class MinimumCondition extends Condition
         return self::$swaggerModelName;
     }
 
-    const TARGET_SUB = 'sub';
-    const TARGET_ARTICLES = 'articles';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getTargetAllowableValues()
-    {
-        return [
-            self::TARGET_SUB,
-            self::TARGET_ARTICLES,
-        ];
-    }
     
 
 
@@ -196,9 +176,8 @@ class MinimumCondition extends Condition
     {
         parent::__construct($data);
 
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
-        $this->container['target'] = isset($data['target']) ? $data['target'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
+        $this->container['attributeToLoadBy'] = isset($data['attributeToLoadBy']) ? $data['attributeToLoadBy'] : null;
+        $this->container['articleIds'] = isset($data['articleIds']) ? $data['articleIds'] : null;
     }
 
     /**
@@ -209,14 +188,6 @@ class MinimumCondition extends Condition
     public function listInvalidProperties()
     {
         $invalidProperties = parent::listInvalidProperties();
-
-        $allowedValues = $this->getTargetAllowableValues();
-        if (!in_array($this->container['target'], $allowedValues)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'target', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -233,91 +204,54 @@ class MinimumCondition extends Condition
             return false;
         }
 
-        $allowedValues = $this->getTargetAllowableValues();
-        if (!in_array($this->container['target'], $allowedValues)) {
-            return false;
-        }
         return true;
     }
 
 
     /**
-     * Gets value
-     *
-     * @return \SSB\Api\Model\Money
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param \SSB\Api\Model\Money $value value
-     *
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Gets target
+     * Gets attributeToLoadBy
      *
      * @return string
      */
-    public function getTarget()
+    public function getAttributeToLoadBy()
     {
-        return $this->container['target'];
+        return $this->container['attributeToLoadBy'];
     }
 
     /**
-     * Sets target
+     * Sets attributeToLoadBy
      *
-     * @param string $target target
+     * @param string $attributeToLoadBy attributeToLoadBy
      *
      * @return $this
      */
-    public function setTarget($target)
+    public function setAttributeToLoadBy($attributeToLoadBy)
     {
-        $allowedValues = $this->getTargetAllowableValues();
-        if (!is_null($target) && !in_array($target, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'target', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['target'] = $target;
+        $this->container['attributeToLoadBy'] = $attributeToLoadBy;
 
         return $this;
     }
 
     /**
-     * Gets conditions
+     * Gets articleIds
      *
-     * @return \SSB\Api\Model\Condition[]
+     * @return string[]
      */
-    public function getConditions()
+    public function getArticleIds()
     {
-        return $this->container['conditions'];
+        return $this->container['articleIds'];
     }
 
     /**
-     * Sets conditions
+     * Sets articleIds
      *
-     * @param \SSB\Api\Model\Condition[] $conditions conditions
+     * @param string[] $articleIds articleIds
      *
      * @return $this
      */
-    public function setConditions($conditions)
+    public function setArticleIds($articleIds)
     {
-        $this->container['conditions'] = $conditions;
+        $this->container['articleIds'] = $articleIds;
 
         return $this;
     }
