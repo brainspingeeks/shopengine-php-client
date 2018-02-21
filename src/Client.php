@@ -84,7 +84,7 @@ class Client
                 }
                 return $arr;
             }
-            else if (is_object($content)) {
+            else if (is_object($content) && isset($content->class)) {
                 return ObjectSerializer::deserialize($content, '\\SSB\\Api\\Model\\' . $content->class, []);
             }
             else {
