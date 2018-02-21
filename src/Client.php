@@ -92,13 +92,13 @@ class Client
             }
         }
         catch (\Exception $exception) {
-//            new Error($exception, [
-//                'version' => self::API_VERSION,
-//                'resource' => $resource,
-//                'params' => $parameter,
-//                'postParams' => $postParameter,
-//                'timestamp' => $timestamp,
-//            ]);
+           new Error($exception, [
+               'version' => self::API_VERSION,
+               'resource' => $resource,
+               'params' => $parameter,
+               'postParams' => $postParameter,
+               'timestamp' => $timestamp,
+           ]);
         }
 
         return [];
