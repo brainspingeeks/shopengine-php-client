@@ -174,6 +174,7 @@ class PercentageModifierCondition extends Condition
     const TARGET_SUB = 'sub';
     const TARGET_TOTALS = 'totals';
     const TARGET_SHIPPING = 'shipping';
+    const TARGET_ARTICLES = 'articles';
     
 
     
@@ -188,6 +189,7 @@ class PercentageModifierCondition extends Condition
             self::TARGET_SUB,
             self::TARGET_TOTALS,
             self::TARGET_SHIPPING,
+            self::TARGET_ARTICLES,
         ];
     }
     
