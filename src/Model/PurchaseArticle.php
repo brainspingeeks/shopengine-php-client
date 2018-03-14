@@ -60,7 +60,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'string',
         'articleVersionId' => 'int',
         'quantity' => 'int',
-        'custom' => 'string',
+        'custom' => 'string[]',
         'price' => '\SSB\Api\Model\Money',
         'name' => 'string',
         'sku' => 'string'
@@ -316,7 +316,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Gets custom
      *
-     * @return string
+     * @return string[]
      */
     public function getCustom()
     {
@@ -326,7 +326,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Sets custom
      *
-     * @param string $custom custom
+     * @param string[] $custom custom
      *
      * @return $this
      */
