@@ -60,7 +60,10 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'string',
         'articleVersionId' => 'int',
         'quantity' => 'int',
-        'custom' => 'string'
+        'custom' => 'string',
+        'price' => '\SSB\Api\Model\Money',
+        'name' => 'string',
+        'sku' => 'string'
     ];
 
     /**
@@ -72,7 +75,10 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => null,
         'articleVersionId' => null,
         'quantity' => null,
-        'custom' => null
+        'custom' => null,
+        'price' => null,
+        'name' => null,
+        'sku' => null
     ];
 
     /**
@@ -105,7 +111,10 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'articleAggregateId',
         'articleVersionId' => 'articleVersionId',
         'quantity' => 'quantity',
-        'custom' => 'custom'
+        'custom' => 'custom',
+        'price' => 'price',
+        'name' => 'name',
+        'sku' => 'sku'
     ];
 
     /**
@@ -117,7 +126,10 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'setArticleAggregateId',
         'articleVersionId' => 'setArticleVersionId',
         'quantity' => 'setQuantity',
-        'custom' => 'setCustom'
+        'custom' => 'setCustom',
+        'price' => 'setPrice',
+        'name' => 'setName',
+        'sku' => 'setSku'
     ];
 
     /**
@@ -129,7 +141,10 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'getArticleAggregateId',
         'articleVersionId' => 'getArticleVersionId',
         'quantity' => 'getQuantity',
-        'custom' => 'getCustom'
+        'custom' => 'getCustom',
+        'price' => 'getPrice',
+        'name' => 'getName',
+        'sku' => 'getSku'
     ];
 
     /**
@@ -196,6 +211,9 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         $this->container['articleVersionId'] = isset($data['articleVersionId']) ? $data['articleVersionId'] : null;
         $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
         $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
     }
 
     /**
@@ -315,6 +333,78 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     public function setCustom($custom)
     {
         $this->container['custom'] = $custom;
+
+        return $this;
+    }
+
+    /**
+     * Gets price
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getPrice()
+    {
+        return $this->container['price'];
+    }
+
+    /**
+     * Sets price
+     *
+     * @param \SSB\Api\Model\Money $price Price of the Article
+     *
+     * @return $this
+     */
+    public function setPrice($price)
+    {
+        $this->container['price'] = $price;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name Name of the Article
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets sku
+     *
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->container['sku'];
+    }
+
+    /**
+     * Sets sku
+     *
+     * @param string $sku Sku of the Article
+     *
+     * @return $this
+     */
+    public function setSku($sku)
+    {
+        $this->container['sku'] = $sku;
 
         return $this;
     }
