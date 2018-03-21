@@ -59,6 +59,8 @@ class Client
             ));
 
             $url = self::API_VERSION . "/$resource?$requestQuery";
+            event(new Event\Start($url));
+
             $response = $client->request(
                 $method,
                 $url,
@@ -74,6 +76,8 @@ class Client
                     'postParams' => $postParameter
                 ];
             }
+
+            event(new Event\End($url));
 
             $content = json_decode($response->getBody());
 
