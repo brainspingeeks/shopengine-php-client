@@ -63,6 +63,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolId' => 'int',
         'validation' => '\SSB\Api\Model\Validation[]',
         'usages' => 'string',
+        'usagesRaw' => '\SSB\Api\Model\Usages',
         'conditionSetActive' => '\SSB\Api\Model\ConditionSet',
         'conditionSetName' => 'string',
         'conditionSetId' => 'string',
@@ -83,6 +84,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolId' => null,
         'validation' => null,
         'usages' => null,
+        'usagesRaw' => null,
         'conditionSetActive' => null,
         'conditionSetName' => null,
         'conditionSetId' => null,
@@ -124,6 +126,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolId' => 'codepoolId',
         'validation' => 'validation',
         'usages' => 'usages',
+        'usagesRaw' => 'usagesRaw',
         'conditionSetActive' => 'conditionSetActive',
         'conditionSetName' => 'conditionSetName',
         'conditionSetId' => 'conditionSetId',
@@ -144,6 +147,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolId' => 'setCodepoolId',
         'validation' => 'setValidation',
         'usages' => 'setUsages',
+        'usagesRaw' => 'setUsagesRaw',
         'conditionSetActive' => 'setConditionSetActive',
         'conditionSetName' => 'setConditionSetName',
         'conditionSetId' => 'setConditionSetId',
@@ -164,6 +168,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolId' => 'getCodepoolId',
         'validation' => 'getValidation',
         'usages' => 'getUsages',
+        'usagesRaw' => 'getUsagesRaw',
         'conditionSetActive' => 'getConditionSetActive',
         'conditionSetName' => 'getConditionSetName',
         'conditionSetId' => 'getConditionSetId',
@@ -253,6 +258,7 @@ class Code implements ModelInterface, ArrayAccess
         $this->container['codepoolId'] = isset($data['codepoolId']) ? $data['codepoolId'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
         $this->container['usages'] = isset($data['usages']) ? $data['usages'] : null;
+        $this->container['usagesRaw'] = isset($data['usagesRaw']) ? $data['usagesRaw'] : null;
         $this->container['conditionSetActive'] = isset($data['conditionSetActive']) ? $data['conditionSetActive'] : null;
         $this->container['conditionSetName'] = isset($data['conditionSetName']) ? $data['conditionSetName'] : null;
         $this->container['conditionSetId'] = isset($data['conditionSetId']) ? $data['conditionSetId'] : null;
@@ -447,6 +453,30 @@ class Code implements ModelInterface, ArrayAccess
     public function setUsages($usages)
     {
         $this->container['usages'] = $usages;
+
+        return $this;
+    }
+
+    /**
+     * Gets usagesRaw
+     *
+     * @return \SSB\Api\Model\Usages
+     */
+    public function getUsagesRaw()
+    {
+        return $this->container['usagesRaw'];
+    }
+
+    /**
+     * Sets usagesRaw
+     *
+     * @param \SSB\Api\Model\Usages $usagesRaw usagesRaw
+     *
+     * @return $this
+     */
+    public function setUsagesRaw($usagesRaw)
+    {
+        $this->container['usagesRaw'] = $usagesRaw;
 
         return $this;
     }
