@@ -47,7 +47,7 @@ class Client
             $start = microtime(true);
         }
 
-        event(new Event\Start($resource));
+        // event(new Event\Start($resource));
 
         $timestamp = time();
         $signature = $this->makeSignature(http_build_query($parameter + $postParameter), $timestamp);
@@ -78,7 +78,7 @@ class Client
                 ];
             }
 
-            event(new Event\End($resource));
+            // event(new Event\End($resource));
 
             $content = json_decode($response->getBody());
 
