@@ -47,6 +47,8 @@ class Client
             $start = microtime(true);
         }
 
+        event(new Event\Start($resource));
+
         $timestamp = time();
         $signature = $this->makeSignature(http_build_query($parameter + $postParameter), $timestamp);
 
@@ -59,6 +61,7 @@ class Client
             ));
 
             $url = self::API_VERSION . "/$resource?$requestQuery";
+
             $response = $client->request(
                 $method,
                 $url,
@@ -74,6 +77,8 @@ class Client
                     'postParams' => $postParameter
                 ];
             }
+
+            event(new Event\End($resource));
 
             $content = json_decode($response->getBody());
 
