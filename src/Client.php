@@ -12,29 +12,29 @@ class Client
     public $debug = false;
     static public $debugData = [];
 
-    public function __construct(string $apiUrl, string $privateKey, bool $debug = false)
+    public function __construct($apiUrl, $privateKey, $debug = false)
     {
         $this->apiUrl = $apiUrl;
         $this->privateKey = $privateKey;
         $this->debug = $debug;
     }
 
-    public function get(string $resource, array $parameter = [])
+    public function get($resource, array $parameter = [])
     {
         return $this->makeRequest('GET', $resource, $parameter);
     }
 
-    public function post(string $resource, array $parameter)
+    public function post($resource, array $parameter)
     {
         return $this->makeRequest('POST', $resource, [], $parameter);
     }
 
-    public function patch(string $resource, array $parameter)
+    public function patch($resource, array $parameter)
     {
         return $this->makeRequest('PATCH', $resource, [], $parameter);
     }
 
-    private function makeRequest(string $method, string $resource, array $parameter, $postParameter = [])
+    private function makeRequest($method, $resource, array $parameter, $postParameter = [])
     {
         // validate request
         foreach ($parameter as $key => $value) {
@@ -69,7 +69,7 @@ class Client
                 self::$debugData[] = [
                     'start' => $start,
                     'end' => microtime(true),
-                    'url' => $url,
+                    'url' => "$this->apiUrl/$url",
                     'params' => $parameter,
                     'postParams' => $postParameter
                 ];
@@ -104,7 +104,7 @@ class Client
         return [];
     }
 
-    private function makeSignature(string $query, int $timestamp): string
+    private function makeSignature($query, $timestamp)
     {
         return base64_encode(hash('sha256', $query . $this->privateKey . $timestamp));
     }

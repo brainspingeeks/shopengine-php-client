@@ -65,7 +65,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
         'shipping' => 'string[]',
         'paymentMethodModels' => 'string[]',
         'paymentMethodsCredentials' => 'string[]',
-        'shopId' => 'string',
+        'shop' => 'string',
         'shopUrl' => 'string',
         'shopApi' => 'string',
         'name' => 'string',
@@ -88,7 +88,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
         'shipping' => null,
         'paymentMethodModels' => null,
         'paymentMethodsCredentials' => null,
-        'shopId' => null,
+        'shop' => null,
         'shopUrl' => null,
         'shopApi' => null,
         'name' => null,
@@ -132,11 +132,11 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
         'shipping' => 'shipping',
         'paymentMethodModels' => 'paymentMethodModels',
         'paymentMethodsCredentials' => 'paymentMethodsCredentials',
-        'shopId' => 'shop_id',
+        'shop' => 'shop',
         'shopUrl' => 'shopUrl',
         'shopApi' => 'shopApi',
         'name' => 'name',
-        'orderConfirmationEmail' => 'order_confirmation_email',
+        'orderConfirmationEmail' => 'orderConfirmationEmail',
         'freeNewsletterGift' => 'freeNewsletterGift',
         'trustedShopsId' => 'trustedShopsId'
     ];
@@ -155,7 +155,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
         'shipping' => 'setShipping',
         'paymentMethodModels' => 'setPaymentMethodModels',
         'paymentMethodsCredentials' => 'setPaymentMethodsCredentials',
-        'shopId' => 'setShopId',
+        'shop' => 'setShop',
         'shopUrl' => 'setShopUrl',
         'shopApi' => 'setShopApi',
         'name' => 'setName',
@@ -178,7 +178,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
         'shipping' => 'getShipping',
         'paymentMethodModels' => 'getPaymentMethodModels',
         'paymentMethodsCredentials' => 'getPaymentMethodsCredentials',
-        'shopId' => 'getShopId',
+        'shop' => 'getShop',
         'shopUrl' => 'getShopUrl',
         'shopApi' => 'getShopApi',
         'name' => 'getName',
@@ -255,7 +255,7 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
         $this->container['paymentMethodModels'] = isset($data['paymentMethodModels']) ? $data['paymentMethodModels'] : null;
         $this->container['paymentMethodsCredentials'] = isset($data['paymentMethodsCredentials']) ? $data['paymentMethodsCredentials'] : null;
-        $this->container['shopId'] = isset($data['shopId']) ? $data['shopId'] : null;
+        $this->container['shop'] = isset($data['shop']) ? $data['shop'] : null;
         $this->container['shopUrl'] = isset($data['shopUrl']) ? $data['shopUrl'] : null;
         $this->container['shopApi'] = isset($data['shopApi']) ? $data['shopApi'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
@@ -482,25 +482,25 @@ class InlineResponse2001 implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets shopId
+     * Gets shop
      *
      * @return string
      */
-    public function getShopId()
+    public function getShop()
     {
-        return $this->container['shopId'];
+        return $this->container['shop'];
     }
 
     /**
-     * Sets shopId
+     * Sets shop
      *
-     * @param string $shopId shopId
+     * @param string $shop shop
      *
      * @return $this
      */
-    public function setShopId($shopId)
+    public function setShop($shop)
     {
-        $this->container['shopId'] = $shopId;
+        $this->container['shop'] = $shop;
 
         return $this;
     }

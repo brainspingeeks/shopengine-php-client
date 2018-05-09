@@ -60,7 +60,12 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'string',
         'articleVersionId' => 'int',
         'quantity' => 'int',
-        'custom' => 'string'
+        'custom' => 'string[]',
+        'price' => '\SSB\Api\Model\Money',
+        'name' => 'string',
+        'sku' => 'string',
+        'tax' => 'int',
+        'originalPrice' => '\SSB\Api\Model\Money'
     ];
 
     /**
@@ -72,7 +77,12 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => null,
         'articleVersionId' => null,
         'quantity' => null,
-        'custom' => null
+        'custom' => null,
+        'price' => null,
+        'name' => null,
+        'sku' => null,
+        'tax' => null,
+        'originalPrice' => null
     ];
 
     /**
@@ -105,7 +115,12 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'articleAggregateId',
         'articleVersionId' => 'articleVersionId',
         'quantity' => 'quantity',
-        'custom' => 'custom'
+        'custom' => 'custom',
+        'price' => 'price',
+        'name' => 'name',
+        'sku' => 'sku',
+        'tax' => 'tax',
+        'originalPrice' => 'originalPrice'
     ];
 
     /**
@@ -117,7 +132,12 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'setArticleAggregateId',
         'articleVersionId' => 'setArticleVersionId',
         'quantity' => 'setQuantity',
-        'custom' => 'setCustom'
+        'custom' => 'setCustom',
+        'price' => 'setPrice',
+        'name' => 'setName',
+        'sku' => 'setSku',
+        'tax' => 'setTax',
+        'originalPrice' => 'setOriginalPrice'
     ];
 
     /**
@@ -129,7 +149,12 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleAggregateId' => 'getArticleAggregateId',
         'articleVersionId' => 'getArticleVersionId',
         'quantity' => 'getQuantity',
-        'custom' => 'getCustom'
+        'custom' => 'getCustom',
+        'price' => 'getPrice',
+        'name' => 'getName',
+        'sku' => 'getSku',
+        'tax' => 'getTax',
+        'originalPrice' => 'getOriginalPrice'
     ];
 
     /**
@@ -196,6 +221,11 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         $this->container['articleVersionId'] = isset($data['articleVersionId']) ? $data['articleVersionId'] : null;
         $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
         $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
+        $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
+        $this->container['tax'] = isset($data['tax']) ? $data['tax'] : null;
+        $this->container['originalPrice'] = isset($data['originalPrice']) ? $data['originalPrice'] : null;
     }
 
     /**
@@ -236,7 +266,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Sets articleAggregateId
      *
-     * @param string $articleAggregateId Aggregate ID of the Article
+     * @param string $articleAggregateId Aggregate Id of the Article
      *
      * @return $this
      */
@@ -260,7 +290,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Sets articleVersionId
      *
-     * @param int $articleVersionId Version ID of the Article
+     * @param int $articleVersionId Version Id of the Article
      *
      * @return $this
      */
@@ -298,7 +328,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Gets custom
      *
-     * @return string
+     * @return string[]
      */
     public function getCustom()
     {
@@ -308,13 +338,133 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     /**
      * Sets custom
      *
-     * @param string $custom custom
+     * @param string[] $custom custom
      *
      * @return $this
      */
     public function setCustom($custom)
     {
         $this->container['custom'] = $custom;
+
+        return $this;
+    }
+
+    /**
+     * Gets price
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getPrice()
+    {
+        return $this->container['price'];
+    }
+
+    /**
+     * Sets price
+     *
+     * @param \SSB\Api\Model\Money $price Price of the Article
+     *
+     * @return $this
+     */
+    public function setPrice($price)
+    {
+        $this->container['price'] = $price;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->container['name'];
+    }
+
+    /**
+     * Sets name
+     *
+     * @param string $name Name of the Article
+     *
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->container['name'] = $name;
+
+        return $this;
+    }
+
+    /**
+     * Gets sku
+     *
+     * @return string
+     */
+    public function getSku()
+    {
+        return $this->container['sku'];
+    }
+
+    /**
+     * Sets sku
+     *
+     * @param string $sku Sku of the Article
+     *
+     * @return $this
+     */
+    public function setSku($sku)
+    {
+        $this->container['sku'] = $sku;
+
+        return $this;
+    }
+
+    /**
+     * Gets tax
+     *
+     * @return int
+     */
+    public function getTax()
+    {
+        return $this->container['tax'];
+    }
+
+    /**
+     * Sets tax
+     *
+     * @param int $tax tax
+     *
+     * @return $this
+     */
+    public function setTax($tax)
+    {
+        $this->container['tax'] = $tax;
+
+        return $this;
+    }
+
+    /**
+     * Gets originalPrice
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getOriginalPrice()
+    {
+        return $this->container['originalPrice'];
+    }
+
+    /**
+     * Sets originalPrice
+     *
+     * @param \SSB\Api\Model\Money $originalPrice originalPrice
+     *
+     * @return $this
+     */
+    public function setOriginalPrice($originalPrice)
+    {
+        $this->container['originalPrice'] = $originalPrice;
 
         return $this;
     }
