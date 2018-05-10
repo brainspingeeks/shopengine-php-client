@@ -61,8 +61,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'string',
         'description' => 'string',
         'trackingSlug' => 'string',
-        'defaultConditionSetAggregateId' => 'string',
-        'defaultConditionset' => '\SSB\Api\Model\ConditionSet',
+        'defaultConditionSet' => '\SSB\Api\Model\ConditionSet',
         'statistics' => '\SSB\Api\Model\CodepoolStatistics'
     ];
 
@@ -76,8 +75,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => null,
         'description' => null,
         'trackingSlug' => null,
-        'defaultConditionSetAggregateId' => null,
-        'defaultConditionset' => null,
+        'defaultConditionSet' => null,
         'statistics' => null
     ];
 
@@ -112,8 +110,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'name',
         'description' => 'description',
         'trackingSlug' => 'trackingSlug',
-        'defaultConditionSetAggregateId' => 'defaultConditionSetAggregateId',
-        'defaultConditionset' => 'defaultConditionset',
+        'defaultConditionSet' => 'defaultConditionSet',
         'statistics' => 'statistics'
     ];
 
@@ -127,8 +124,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'setName',
         'description' => 'setDescription',
         'trackingSlug' => 'setTrackingSlug',
-        'defaultConditionSetAggregateId' => 'setDefaultConditionSetAggregateId',
-        'defaultConditionset' => 'setDefaultConditionset',
+        'defaultConditionSet' => 'setDefaultConditionSet',
         'statistics' => 'setStatistics'
     ];
 
@@ -142,8 +138,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'name' => 'getName',
         'description' => 'getDescription',
         'trackingSlug' => 'getTrackingSlug',
-        'defaultConditionSetAggregateId' => 'getDefaultConditionSetAggregateId',
-        'defaultConditionset' => 'getDefaultConditionset',
+        'defaultConditionSet' => 'getDefaultConditionSet',
         'statistics' => 'getStatistics'
     ];
 
@@ -211,8 +206,7 @@ class Codepool implements ModelInterface, ArrayAccess
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
-        $this->container['defaultConditionSetAggregateId'] = isset($data['defaultConditionSetAggregateId']) ? $data['defaultConditionSetAggregateId'] : null;
-        $this->container['defaultConditionset'] = isset($data['defaultConditionset']) ? $data['defaultConditionset'] : null;
+        $this->container['defaultConditionSet'] = isset($data['defaultConditionSet']) ? $data['defaultConditionSet'] : null;
         $this->container['statistics'] = isset($data['statistics']) ? $data['statistics'] : null;
     }
 
@@ -338,49 +332,25 @@ class Codepool implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets defaultConditionSetAggregateId
-     *
-     * @return string
-     */
-    public function getDefaultConditionSetAggregateId()
-    {
-        return $this->container['defaultConditionSetAggregateId'];
-    }
-
-    /**
-     * Sets defaultConditionSetAggregateId
-     *
-     * @param string $defaultConditionSetAggregateId App\\Models\\Codepool
-     *
-     * @return $this
-     */
-    public function setDefaultConditionSetAggregateId($defaultConditionSetAggregateId)
-    {
-        $this->container['defaultConditionSetAggregateId'] = $defaultConditionSetAggregateId;
-
-        return $this;
-    }
-
-    /**
-     * Gets defaultConditionset
+     * Gets defaultConditionSet
      *
      * @return \SSB\Api\Model\ConditionSet
      */
-    public function getDefaultConditionset()
+    public function getDefaultConditionSet()
     {
-        return $this->container['defaultConditionset'];
+        return $this->container['defaultConditionSet'];
     }
 
     /**
-     * Sets defaultConditionset
+     * Sets defaultConditionSet
      *
-     * @param \SSB\Api\Model\ConditionSet $defaultConditionset defaultConditionset
+     * @param \SSB\Api\Model\ConditionSet $defaultConditionSet defaultConditionSet
      *
      * @return $this
      */
-    public function setDefaultConditionset($defaultConditionset)
+    public function setDefaultConditionSet($defaultConditionSet)
     {
-        $this->container['defaultConditionset'] = $defaultConditionset;
+        $this->container['defaultConditionSet'] = $defaultConditionSet;
 
         return $this;
     }
