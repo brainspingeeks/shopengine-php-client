@@ -71,9 +71,10 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => '\SSB\Api\Model\Money',
         'discountedTotal' => '\SSB\Api\Model\Money',
         'shipping' => '\SSB\Api\Model\Money',
-        'shippingTaxTotal' => '\SSB\Api\Model\Money',
+        'shippingTax' => '\SSB\Api\Model\Money',
         'orderId' => 'string',
         'orderDate' => '\DateTime',
+        'trackingCodes' => 'string[]',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -98,9 +99,10 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => null,
         'discountedTotal' => null,
         'shipping' => null,
-        'shippingTaxTotal' => null,
+        'shippingTax' => null,
         'orderId' => null,
         'orderDate' => 'date-time',
+        'trackingCodes' => null,
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -146,9 +148,10 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => 'taxTotal',
         'discountedTotal' => 'discountedTotal',
         'shipping' => 'shipping',
-        'shippingTaxTotal' => 'shippingTaxTotal',
+        'shippingTax' => 'shippingTax',
         'orderId' => 'orderId',
         'orderDate' => 'orderDate',
+        'trackingCodes' => 'trackingCodes',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -173,9 +176,10 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => 'setTaxTotal',
         'discountedTotal' => 'setDiscountedTotal',
         'shipping' => 'setShipping',
-        'shippingTaxTotal' => 'setShippingTaxTotal',
+        'shippingTax' => 'setShippingTax',
         'orderId' => 'setOrderId',
         'orderDate' => 'setOrderDate',
+        'trackingCodes' => 'setTrackingCodes',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -200,9 +204,10 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => 'getTaxTotal',
         'discountedTotal' => 'getDiscountedTotal',
         'shipping' => 'getShipping',
-        'shippingTaxTotal' => 'getShippingTaxTotal',
+        'shippingTax' => 'getShippingTax',
         'orderId' => 'getOrderId',
         'orderDate' => 'getOrderDate',
+        'trackingCodes' => 'getTrackingCodes',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -323,9 +328,10 @@ class Purchase implements ModelInterface, ArrayAccess
         $this->container['taxTotal'] = isset($data['taxTotal']) ? $data['taxTotal'] : null;
         $this->container['discountedTotal'] = isset($data['discountedTotal']) ? $data['discountedTotal'] : null;
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
-        $this->container['shippingTaxTotal'] = isset($data['shippingTaxTotal']) ? $data['shippingTaxTotal'] : null;
+        $this->container['shippingTax'] = isset($data['shippingTax']) ? $data['shippingTax'] : null;
         $this->container['orderId'] = isset($data['orderId']) ? $data['orderId'] : null;
         $this->container['orderDate'] = isset($data['orderDate']) ? $data['orderDate'] : null;
+        $this->container['trackingCodes'] = isset($data['trackingCodes']) ? $data['trackingCodes'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -734,25 +740,25 @@ class Purchase implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets shippingTaxTotal
+     * Gets shippingTax
      *
      * @return \SSB\Api\Model\Money
      */
-    public function getShippingTaxTotal()
+    public function getShippingTax()
     {
-        return $this->container['shippingTaxTotal'];
+        return $this->container['shippingTax'];
     }
 
     /**
-     * Sets shippingTaxTotal
+     * Sets shippingTax
      *
-     * @param \SSB\Api\Model\Money $shippingTaxTotal shippingTaxTotal
+     * @param \SSB\Api\Model\Money $shippingTax shippingTax
      *
      * @return $this
      */
-    public function setShippingTaxTotal($shippingTaxTotal)
+    public function setShippingTax($shippingTax)
     {
-        $this->container['shippingTaxTotal'] = $shippingTaxTotal;
+        $this->container['shippingTax'] = $shippingTax;
 
         return $this;
     }
@@ -801,6 +807,30 @@ class Purchase implements ModelInterface, ArrayAccess
     public function setOrderDate($orderDate)
     {
         $this->container['orderDate'] = $orderDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets trackingCodes
+     *
+     * @return string[]
+     */
+    public function getTrackingCodes()
+    {
+        return $this->container['trackingCodes'];
+    }
+
+    /**
+     * Sets trackingCodes
+     *
+     * @param string[] $trackingCodes trackingCodes
+     *
+     * @return $this
+     */
+    public function setTrackingCodes($trackingCodes)
+    {
+        $this->container['trackingCodes'] = $trackingCodes;
 
         return $this;
     }
