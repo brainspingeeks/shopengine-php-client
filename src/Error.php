@@ -2,14 +2,15 @@
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use Log;
-use App;
 
 class Error
 {
     function __construct($e = null, $context = [])
     {
-        if (!App::environment('production')) {
+        print_r($e->getMessage());
+        die();
+
+        if (!\App::environment('production')) {
             $logContext = $context;
 
             $message = 'Undefined';
@@ -19,7 +20,7 @@ class Error
                 $message = $e->getMessage();
             }
 
-            Log::error($message, $logContext);
+            \Log::error($message, $logContext);
 
             if (
                 get_class($e) === ServerException::class ||

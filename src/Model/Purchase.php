@@ -71,6 +71,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => '\SSB\Api\Model\Money',
         'discountedTotal' => '\SSB\Api\Model\Money',
         'shipping' => '\SSB\Api\Model\Money',
+        'shippingTaxTotal' => '\SSB\Api\Model\Money',
         'orderId' => 'string',
         'orderDate' => '\DateTime',
         'versionId' => 'int',
@@ -97,6 +98,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => null,
         'discountedTotal' => null,
         'shipping' => null,
+        'shippingTaxTotal' => null,
         'orderId' => null,
         'orderDate' => 'date-time',
         'versionId' => null,
@@ -144,6 +146,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => 'taxTotal',
         'discountedTotal' => 'discountedTotal',
         'shipping' => 'shipping',
+        'shippingTaxTotal' => 'shippingTaxTotal',
         'orderId' => 'orderId',
         'orderDate' => 'orderDate',
         'versionId' => 'versionId',
@@ -170,6 +173,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => 'setTaxTotal',
         'discountedTotal' => 'setDiscountedTotal',
         'shipping' => 'setShipping',
+        'shippingTaxTotal' => 'setShippingTaxTotal',
         'orderId' => 'setOrderId',
         'orderDate' => 'setOrderDate',
         'versionId' => 'setVersionId',
@@ -196,6 +200,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'taxTotal' => 'getTaxTotal',
         'discountedTotal' => 'getDiscountedTotal',
         'shipping' => 'getShipping',
+        'shippingTaxTotal' => 'getShippingTaxTotal',
         'orderId' => 'getOrderId',
         'orderDate' => 'getOrderDate',
         'versionId' => 'getVersionId',
@@ -318,6 +323,7 @@ class Purchase implements ModelInterface, ArrayAccess
         $this->container['taxTotal'] = isset($data['taxTotal']) ? $data['taxTotal'] : null;
         $this->container['discountedTotal'] = isset($data['discountedTotal']) ? $data['discountedTotal'] : null;
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
+        $this->container['shippingTaxTotal'] = isset($data['shippingTaxTotal']) ? $data['shippingTaxTotal'] : null;
         $this->container['orderId'] = isset($data['orderId']) ? $data['orderId'] : null;
         $this->container['orderDate'] = isset($data['orderDate']) ? $data['orderDate'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
@@ -723,6 +729,30 @@ class Purchase implements ModelInterface, ArrayAccess
     public function setShipping($shipping)
     {
         $this->container['shipping'] = $shipping;
+
+        return $this;
+    }
+
+    /**
+     * Gets shippingTaxTotal
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getShippingTaxTotal()
+    {
+        return $this->container['shippingTaxTotal'];
+    }
+
+    /**
+     * Sets shippingTaxTotal
+     *
+     * @param \SSB\Api\Model\Money $shippingTaxTotal shippingTaxTotal
+     *
+     * @return $this
+     */
+    public function setShippingTaxTotal($shippingTaxTotal)
+    {
+        $this->container['shippingTaxTotal'] = $shippingTaxTotal;
 
         return $this;
     }

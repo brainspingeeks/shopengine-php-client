@@ -74,7 +74,8 @@ class Client
                     'end' => microtime(true),
                     'url' => "$this->apiUrl/$url",
                     'params' => $parameter,
-                    'postParams' => $postParameter
+                    'postParams' => $postParameter,
+                    'trace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
                 ];
             }
 
@@ -85,7 +86,12 @@ class Client
             if (is_array($content)) {
                 $arr = [];
                 foreach ($content as $c) {
-                    $arr[] = ObjectSerializer::deserialize($c, '\\SSB\\Api\\Model\\' . $c->class, []);
+                    if (isset($c->class)) {
+                        $arr[] = ObjectSerializer::deserialize($c, '\\SSB\\Api\\Model\\' . $c->class, []);
+                    }
+                    else {
+                        $arr[] = $c;
+                    }
                 }
                 return $arr;
             }
