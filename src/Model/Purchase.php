@@ -74,7 +74,6 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => '\SSB\Api\Model\Money',
         'shippingTax' => '\SSB\Api\Model\Money',
         'orderId' => 'string',
-        'test' => 'string',
         'orderDate' => '\DateTime',
         'trackingCodes' => 'string[]',
         'versionId' => 'int',
@@ -104,7 +103,6 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => null,
         'shippingTax' => null,
         'orderId' => null,
-        'test' => null,
         'orderDate' => 'date-time',
         'trackingCodes' => null,
         'versionId' => null,
@@ -155,7 +153,6 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => 'shipping',
         'shippingTax' => 'shippingTax',
         'orderId' => 'orderId',
-        'test' => 'test',
         'orderDate' => 'orderDate',
         'trackingCodes' => 'trackingCodes',
         'versionId' => 'versionId',
@@ -185,7 +182,6 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => 'setShipping',
         'shippingTax' => 'setShippingTax',
         'orderId' => 'setOrderId',
-        'test' => 'setTest',
         'orderDate' => 'setOrderDate',
         'trackingCodes' => 'setTrackingCodes',
         'versionId' => 'setVersionId',
@@ -215,7 +211,6 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => 'getShipping',
         'shippingTax' => 'getShippingTax',
         'orderId' => 'getOrderId',
-        'test' => 'getTest',
         'orderDate' => 'getOrderDate',
         'trackingCodes' => 'getTrackingCodes',
         'versionId' => 'getVersionId',
@@ -341,7 +336,6 @@ class Purchase implements ModelInterface, ArrayAccess
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
         $this->container['shippingTax'] = isset($data['shippingTax']) ? $data['shippingTax'] : null;
         $this->container['orderId'] = isset($data['orderId']) ? $data['orderId'] : null;
-        $this->container['test'] = isset($data['test']) ? $data['test'] : null;
         $this->container['orderDate'] = isset($data['orderDate']) ? $data['orderDate'] : null;
         $this->container['trackingCodes'] = isset($data['trackingCodes']) ? $data['trackingCodes'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
@@ -819,30 +813,6 @@ class Purchase implements ModelInterface, ArrayAccess
     public function setOrderId($orderId)
     {
         $this->container['orderId'] = $orderId;
-
-        return $this;
-    }
-
-    /**
-     * Gets test
-     *
-     * @return string
-     */
-    public function getTest()
-    {
-        return $this->container['test'];
-    }
-
-    /**
-     * Sets test
-     *
-     * @param string $test test
-     *
-     * @return $this
-     */
-    public function setTest($test)
-    {
-        $this->container['test'] = $test;
 
         return $this;
     }
