@@ -47,7 +47,7 @@ class Client
             $start = microtime(true);
         }
 
-        // event(new Event\Start($resource));
+        $this->eventStart($resource);
 
         $timestamp = time();
         $signature = $this->makeSignature(http_build_query($parameter + $postParameter), $timestamp);
@@ -75,11 +75,11 @@ class Client
                     'url' => "$this->apiUrl/$url",
                     'params' => $parameter,
                     'postParams' => $postParameter,
-                    'trace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
+                    'trace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
                 ];
             }
 
-            // event(new Event\End($resource));
+            $this->eventEnd($resource);
 
             $content = json_decode($response->getBody());
 
@@ -103,16 +103,31 @@ class Client
             }
         }
         catch (\Exception $exception) {
-           new Error($exception, [
-               'version' => self::API_VERSION,
-               'resource' => $resource,
-               'params' => $parameter,
-               'postParams' => $postParameter,
-               'timestamp' => $timestamp,
-           ]);
+            $this->handleError($exception, [
+                'version' => self::API_VERSION,
+                'resource' => $resource,
+                'params' => $parameter,
+                'postParams' => $postParameter,
+                'timestamp' => $timestamp,
+            ]);
         }
 
         return [];
+    }
+
+    public function handleError(\Exception $e, array $context): void
+    {
+
+    }
+
+    public function eventStart(string $resource): void
+    {
+
+    }
+
+    public function eventEnd(string $resource): void
+    {
+
     }
 
     private function makeSignature($query, $timestamp)

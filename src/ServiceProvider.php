@@ -12,7 +12,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
             $privateKey = config('shopshop-api.privateKey');
             $debug = !\App::environment(['testing', 'production']);
 
-            return new Client($apiUrl, $privateKey, $debug);
+            return new LaravelClient($apiUrl, $privateKey, $debug);
         });
 
         if (class_exists('Barryvdh\Debugbar\LaravelDebugbar')) {

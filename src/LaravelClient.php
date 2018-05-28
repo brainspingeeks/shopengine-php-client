@@ -3,13 +3,10 @@
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 
-class Error
+class LaravelClient extends Client
 {
-    function __construct($e = null, $context = [])
+    public function handleError(\Exception $e, array $context): void
     {
-        print_r($e->getMessage());
-        die();
-
         if (!\App::environment('production')) {
             $logContext = $context;
 
@@ -34,8 +31,19 @@ class Error
         }
 
         try {
-          app('sentry')->captureException($e, ['extra' => $context]);
+            app('sentry')->captureException($e, ['extra' => $context]);
         }
-        catch (\Exception $e) {}
+        catch (\Exception $e) {
+        }
+    }
+
+    public function eventStart(string $resource): void
+    {
+        event(new Event\Start($resource));
+    }
+
+    public function eventEnd(string $resource): void
+    {
+        event(new Event\End($resource));
     }
 }
