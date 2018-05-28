@@ -66,13 +66,16 @@ class Purchase implements ModelInterface, ArrayAccess
         'user' => 'string',
         'originStatus' => 'string',
         'status' => 'string',
+        'purchaseEvents' => '\SSB\Api\Model\PurchaseEvent[]',
         'grandTotal' => '\SSB\Api\Model\Money',
         'subTotal' => '\SSB\Api\Model\Money',
         'taxTotal' => '\SSB\Api\Model\Money',
         'discountedTotal' => '\SSB\Api\Model\Money',
         'shipping' => '\SSB\Api\Model\Money',
+        'shippingTax' => '\SSB\Api\Model\Money',
         'orderId' => 'string',
         'orderDate' => '\DateTime',
+        'trackingCodes' => 'string[]',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -92,13 +95,16 @@ class Purchase implements ModelInterface, ArrayAccess
         'user' => null,
         'originStatus' => null,
         'status' => null,
+        'purchaseEvents' => null,
         'grandTotal' => null,
         'subTotal' => null,
         'taxTotal' => null,
         'discountedTotal' => null,
         'shipping' => null,
+        'shippingTax' => null,
         'orderId' => null,
         'orderDate' => 'date-time',
+        'trackingCodes' => null,
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -139,13 +145,16 @@ class Purchase implements ModelInterface, ArrayAccess
         'user' => 'user',
         'originStatus' => 'originStatus',
         'status' => 'status',
+        'purchaseEvents' => 'purchaseEvents',
         'grandTotal' => 'grandTotal',
         'subTotal' => 'subTotal',
         'taxTotal' => 'taxTotal',
         'discountedTotal' => 'discountedTotal',
         'shipping' => 'shipping',
+        'shippingTax' => 'shippingTax',
         'orderId' => 'orderId',
         'orderDate' => 'orderDate',
+        'trackingCodes' => 'trackingCodes',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -165,13 +174,16 @@ class Purchase implements ModelInterface, ArrayAccess
         'user' => 'setUser',
         'originStatus' => 'setOriginStatus',
         'status' => 'setStatus',
+        'purchaseEvents' => 'setPurchaseEvents',
         'grandTotal' => 'setGrandTotal',
         'subTotal' => 'setSubTotal',
         'taxTotal' => 'setTaxTotal',
         'discountedTotal' => 'setDiscountedTotal',
         'shipping' => 'setShipping',
+        'shippingTax' => 'setShippingTax',
         'orderId' => 'setOrderId',
         'orderDate' => 'setOrderDate',
+        'trackingCodes' => 'setTrackingCodes',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -191,13 +203,16 @@ class Purchase implements ModelInterface, ArrayAccess
         'user' => 'getUser',
         'originStatus' => 'getOriginStatus',
         'status' => 'getStatus',
+        'purchaseEvents' => 'getPurchaseEvents',
         'grandTotal' => 'getGrandTotal',
         'subTotal' => 'getSubTotal',
         'taxTotal' => 'getTaxTotal',
         'discountedTotal' => 'getDiscountedTotal',
         'shipping' => 'getShipping',
+        'shippingTax' => 'getShippingTax',
         'orderId' => 'getOrderId',
         'orderDate' => 'getOrderDate',
+        'trackingCodes' => 'getTrackingCodes',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -313,13 +328,16 @@ class Purchase implements ModelInterface, ArrayAccess
         $this->container['user'] = isset($data['user']) ? $data['user'] : null;
         $this->container['originStatus'] = isset($data['originStatus']) ? $data['originStatus'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['purchaseEvents'] = isset($data['purchaseEvents']) ? $data['purchaseEvents'] : null;
         $this->container['grandTotal'] = isset($data['grandTotal']) ? $data['grandTotal'] : null;
         $this->container['subTotal'] = isset($data['subTotal']) ? $data['subTotal'] : null;
         $this->container['taxTotal'] = isset($data['taxTotal']) ? $data['taxTotal'] : null;
         $this->container['discountedTotal'] = isset($data['discountedTotal']) ? $data['discountedTotal'] : null;
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
+        $this->container['shippingTax'] = isset($data['shippingTax']) ? $data['shippingTax'] : null;
         $this->container['orderId'] = isset($data['orderId']) ? $data['orderId'] : null;
         $this->container['orderDate'] = isset($data['orderDate']) ? $data['orderDate'] : null;
+        $this->container['trackingCodes'] = isset($data['trackingCodes']) ? $data['trackingCodes'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -608,6 +626,30 @@ class Purchase implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets purchaseEvents
+     *
+     * @return \SSB\Api\Model\PurchaseEvent[]
+     */
+    public function getPurchaseEvents()
+    {
+        return $this->container['purchaseEvents'];
+    }
+
+    /**
+     * Sets purchaseEvents
+     *
+     * @param \SSB\Api\Model\PurchaseEvent[] $purchaseEvents purchaseEvents
+     *
+     * @return $this
+     */
+    public function setPurchaseEvents($purchaseEvents)
+    {
+        $this->container['purchaseEvents'] = $purchaseEvents;
+
+        return $this;
+    }
+
+    /**
      * Gets grandTotal
      *
      * @return \SSB\Api\Model\Money
@@ -728,6 +770,30 @@ class Purchase implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets shippingTax
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getShippingTax()
+    {
+        return $this->container['shippingTax'];
+    }
+
+    /**
+     * Sets shippingTax
+     *
+     * @param \SSB\Api\Model\Money $shippingTax shippingTax
+     *
+     * @return $this
+     */
+    public function setShippingTax($shippingTax)
+    {
+        $this->container['shippingTax'] = $shippingTax;
+
+        return $this;
+    }
+
+    /**
      * Gets orderId
      *
      * @return string
@@ -771,6 +837,30 @@ class Purchase implements ModelInterface, ArrayAccess
     public function setOrderDate($orderDate)
     {
         $this->container['orderDate'] = $orderDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets trackingCodes
+     *
+     * @return string[]
+     */
+    public function getTrackingCodes()
+    {
+        return $this->container['trackingCodes'];
+    }
+
+    /**
+     * Sets trackingCodes
+     *
+     * @param string[] $trackingCodes trackingCodes
+     *
+     * @return $this
+     */
+    public function setTrackingCodes($trackingCodes)
+    {
+        $this->container['trackingCodes'] = $trackingCodes;
 
         return $this;
     }
