@@ -321,6 +321,12 @@ class ObjectSerializer
             'string',
             'void',
         ], true)) {
+            if (is_object($data) || is_array($data)) {
+                // should not happen if api is documented right,
+                // but there are some edge cases where this may be valid
+                return $data;
+            }
+
             settype($data, $class);
             return $data;
         }

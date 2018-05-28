@@ -2,14 +2,12 @@
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use Log;
-use App;
 
-class Error
+class LaravelClient extends Client
 {
-    function __construct($e = null, $context = [])
+    public function handleError(\Exception $e, array $context): void
     {
-        if (!App::environment('production')) {
+        if (!\App::environment('production')) {
             $logContext = $context;
 
             $message = 'Undefined';
@@ -19,7 +17,7 @@ class Error
                 $message = $e->getMessage();
             }
 
-            Log::error($message, $logContext);
+            \Log::error($message, $logContext);
 
             if (
                 get_class($e) === ServerException::class ||
@@ -33,8 +31,19 @@ class Error
         }
 
         try {
-          app('sentry')->captureException($e, ['extra' => $context]);
+            app('sentry')->captureException($e, ['extra' => $context]);
         }
-        catch (\Exception $e) {}
+        catch (\Exception $e) {
+        }
+    }
+
+    public function eventStart(string $resource): void
+    {
+        event(new Event\Start($resource));
+    }
+
+    public function eventEnd(string $resource): void
+    {
+        event(new Event\End($resource));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * InlineResponse2002
+ * Usages
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * InlineResponse2002 Class Doc Comment
+ * Usages Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class InlineResponse2002 implements ModelInterface, ArrayAccess
+class Usages implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'inline_response_200_2';
+    protected static $swaggerModelName = 'Usages';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +57,9 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'weclappApiToken' => 'string',
-        'weclappUrl' => 'string'
+        'count' => 'float',
+        'maxUsages' => 'float',
+        'total' => 'float'
     ];
 
     /**
@@ -67,8 +68,9 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'weclappApiToken' => null,
-        'weclappUrl' => null
+        'count' => null,
+        'maxUsages' => null,
+        'total' => null
     ];
 
     /**
@@ -98,8 +100,9 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'weclappApiToken' => 'weclapp_api_token',
-        'weclappUrl' => 'weclapp_url'
+        'count' => 'count',
+        'maxUsages' => 'maxUsages',
+        'total' => 'total'
     ];
 
     /**
@@ -108,8 +111,9 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'weclappApiToken' => 'setWeclappApiToken',
-        'weclappUrl' => 'setWeclappUrl'
+        'count' => 'setCount',
+        'maxUsages' => 'setMaxUsages',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -118,8 +122,9 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'weclappApiToken' => 'getWeclappApiToken',
-        'weclappUrl' => 'getWeclappUrl'
+        'count' => 'getCount',
+        'maxUsages' => 'getMaxUsages',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -182,8 +187,9 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['weclappApiToken'] = isset($data['weclappApiToken']) ? $data['weclappApiToken'] : null;
-        $this->container['weclappUrl'] = isset($data['weclappUrl']) ? $data['weclappUrl'] : null;
+        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
+        $this->container['maxUsages'] = isset($data['maxUsages']) ? $data['maxUsages'] : null;
+        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
     }
 
     /**
@@ -212,49 +218,73 @@ class InlineResponse2002 implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets weclappApiToken
+     * Gets count
      *
-     * @return string
+     * @return float
      */
-    public function getWeclappApiToken()
+    public function getCount()
     {
-        return $this->container['weclappApiToken'];
+        return $this->container['count'];
     }
 
     /**
-     * Sets weclappApiToken
+     * Sets count
      *
-     * @param string $weclappApiToken weclappApiToken
+     * @param float $count count
      *
      * @return $this
      */
-    public function setWeclappApiToken($weclappApiToken)
+    public function setCount($count)
     {
-        $this->container['weclappApiToken'] = $weclappApiToken;
+        $this->container['count'] = $count;
 
         return $this;
     }
 
     /**
-     * Gets weclappUrl
+     * Gets maxUsages
      *
-     * @return string
+     * @return float
      */
-    public function getWeclappUrl()
+    public function getMaxUsages()
     {
-        return $this->container['weclappUrl'];
+        return $this->container['maxUsages'];
     }
 
     /**
-     * Sets weclappUrl
+     * Sets maxUsages
      *
-     * @param string $weclappUrl weclappUrl
+     * @param float $maxUsages maxUsages
      *
      * @return $this
      */
-    public function setWeclappUrl($weclappUrl)
+    public function setMaxUsages($maxUsages)
     {
-        $this->container['weclappUrl'] = $weclappUrl;
+        $this->container['maxUsages'] = $maxUsages;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return float
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     *
+     * @param float $total total
+     *
+     * @return $this
+     */
+    public function setTotal($total)
+    {
+        $this->container['total'] = $total;
 
         return $this;
     }

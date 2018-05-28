@@ -12,29 +12,29 @@ class Client
     public $debug = false;
     static public $debugData = [];
 
-    public function __construct(string $apiUrl, string $privateKey, bool $debug = false)
+    public function __construct($apiUrl, $privateKey, $debug = false)
     {
         $this->apiUrl = $apiUrl;
         $this->privateKey = $privateKey;
         $this->debug = $debug;
     }
 
-    public function get(string $resource, array $parameter = [])
+    public function get($resource, array $parameter = [])
     {
         return $this->makeRequest('GET', $resource, $parameter);
     }
 
-    public function post(string $resource, array $parameter)
+    public function post($resource, array $parameter)
     {
         return $this->makeRequest('POST', $resource, [], $parameter);
     }
 
-    public function patch(string $resource, array $parameter)
+    public function patch($resource, array $parameter)
     {
         return $this->makeRequest('PATCH', $resource, [], $parameter);
     }
 
-    private function makeRequest(string $method, string $resource, array $parameter, $postParameter = [])
+    private function makeRequest($method, $resource, array $parameter, $postParameter = [])
     {
         // validate request
         foreach ($parameter as $key => $value) {
@@ -46,6 +46,8 @@ class Client
         if ($this->debug) {
             $start = microtime(true);
         }
+
+        $this->eventStart($resource);
 
         $timestamp = time();
         $signature = $this->makeSignature(http_build_query($parameter + $postParameter), $timestamp);
@@ -59,6 +61,7 @@ class Client
             ));
 
             $url = self::API_VERSION . "/$resource?$requestQuery";
+
             $response = $client->request(
                 $method,
                 $url,
@@ -69,18 +72,26 @@ class Client
                 self::$debugData[] = [
                     'start' => $start,
                     'end' => microtime(true),
-                    'url' => $url,
+                    'url' => "$this->apiUrl/$url",
                     'params' => $parameter,
-                    'postParams' => $postParameter
+                    'postParams' => $postParameter,
+                    'trace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS),
                 ];
             }
+
+            $this->eventEnd($resource);
 
             $content = json_decode($response->getBody());
 
             if (is_array($content)) {
                 $arr = [];
                 foreach ($content as $c) {
-                    $arr[] = ObjectSerializer::deserialize($c, '\\SSB\\Api\\Model\\' . $c->class, []);
+                    if (isset($c->class)) {
+                        $arr[] = ObjectSerializer::deserialize($c, '\\SSB\\Api\\Model\\' . $c->class, []);
+                    }
+                    else {
+                        $arr[] = $c;
+                    }
                 }
                 return $arr;
             }
@@ -92,19 +103,34 @@ class Client
             }
         }
         catch (\Exception $exception) {
-           new Error($exception, [
-               'version' => self::API_VERSION,
-               'resource' => $resource,
-               'params' => $parameter,
-               'postParams' => $postParameter,
-               'timestamp' => $timestamp,
-           ]);
+            $this->handleError($exception, [
+                'version' => self::API_VERSION,
+                'resource' => $resource,
+                'params' => $parameter,
+                'postParams' => $postParameter,
+                'timestamp' => $timestamp,
+            ]);
         }
 
         return [];
     }
 
-    private function makeSignature(string $query, int $timestamp): string
+    public function handleError(\Exception $e, array $context): void
+    {
+
+    }
+
+    public function eventStart(string $resource): void
+    {
+
+    }
+
+    public function eventEnd(string $resource): void
+    {
+
+    }
+
+    private function makeSignature($query, $timestamp)
     {
         return base64_encode(hash('sha256', $query . $this->privateKey . $timestamp));
     }
