@@ -66,7 +66,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'user' => 'string',
         'originStatus' => 'string',
         'status' => 'string',
-        'purchaseEvents' => '\SSB\Api\Model\PurchaseEvent[]',
+        'purchaseEvents' => '\SSB\Api\Model\EventSourceEvent[]',
         'grandTotal' => '\SSB\Api\Model\Money',
         'subTotal' => '\SSB\Api\Model\Money',
         'taxTotal' => '\SSB\Api\Model\Money',
@@ -628,7 +628,7 @@ class Purchase implements ModelInterface, ArrayAccess
     /**
      * Gets purchaseEvents
      *
-     * @return \SSB\Api\Model\PurchaseEvent[]
+     * @return \SSB\Api\Model\EventSourceEvent[]
      */
     public function getPurchaseEvents()
     {
@@ -638,7 +638,7 @@ class Purchase implements ModelInterface, ArrayAccess
     /**
      * Sets purchaseEvents
      *
-     * @param \SSB\Api\Model\PurchaseEvent[] $purchaseEvents purchaseEvents
+     * @param \SSB\Api\Model\EventSourceEvent[] $purchaseEvents purchaseEvents
      *
      * @return $this
      */
