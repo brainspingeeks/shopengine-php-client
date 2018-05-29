@@ -62,6 +62,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'description' => 'string',
         'trackingSlug' => 'string',
         'defaultConditionSet' => '\SSB\Api\Model\ConditionSet',
+        'updatedAt' => '\DateTime',
         'statistics' => '\SSB\Api\Model\CodepoolStatistics'
     ];
 
@@ -76,6 +77,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'description' => null,
         'trackingSlug' => null,
         'defaultConditionSet' => null,
+        'updatedAt' => 'date-time',
         'statistics' => null
     ];
 
@@ -111,6 +113,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'description' => 'description',
         'trackingSlug' => 'trackingSlug',
         'defaultConditionSet' => 'defaultConditionSet',
+        'updatedAt' => 'updatedAt',
         'statistics' => 'statistics'
     ];
 
@@ -125,6 +128,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'description' => 'setDescription',
         'trackingSlug' => 'setTrackingSlug',
         'defaultConditionSet' => 'setDefaultConditionSet',
+        'updatedAt' => 'setUpdatedAt',
         'statistics' => 'setStatistics'
     ];
 
@@ -139,6 +143,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'description' => 'getDescription',
         'trackingSlug' => 'getTrackingSlug',
         'defaultConditionSet' => 'getDefaultConditionSet',
+        'updatedAt' => 'getUpdatedAt',
         'statistics' => 'getStatistics'
     ];
 
@@ -207,6 +212,7 @@ class Codepool implements ModelInterface, ArrayAccess
         $this->container['description'] = isset($data['description']) ? $data['description'] : null;
         $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
         $this->container['defaultConditionSet'] = isset($data['defaultConditionSet']) ? $data['defaultConditionSet'] : null;
+        $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
         $this->container['statistics'] = isset($data['statistics']) ? $data['statistics'] : null;
     }
 
@@ -351,6 +357,30 @@ class Codepool implements ModelInterface, ArrayAccess
     public function setDefaultConditionSet($defaultConditionSet)
     {
         $this->container['defaultConditionSet'] = $defaultConditionSet;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime $updatedAt updatedAt
+     *
+     * @return $this
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }
