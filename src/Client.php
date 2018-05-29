@@ -83,6 +83,11 @@ class Client
 
             $content = json_decode($response->getBody());
 
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                $e = new \Exception($response->getBody().'', 10);
+                throw $e;
+            }
+
             if (is_array($content)) {
                 $arr = [];
                 foreach ($content as $c) {
