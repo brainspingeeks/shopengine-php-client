@@ -68,6 +68,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetName' => 'string',
         'conditionSetId' => 'string',
         'codepoolName' => 'string',
+        'updatedAt' => '\DateTime',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -89,6 +90,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetName' => null,
         'conditionSetId' => null,
         'codepoolName' => null,
+        'updatedAt' => 'date-time',
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -131,6 +133,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetName' => 'conditionSetName',
         'conditionSetId' => 'conditionSetId',
         'codepoolName' => 'codepoolName',
+        'updatedAt' => 'updatedAt',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -152,6 +155,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetName' => 'setConditionSetName',
         'conditionSetId' => 'setConditionSetId',
         'codepoolName' => 'setCodepoolName',
+        'updatedAt' => 'setUpdatedAt',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -173,6 +177,7 @@ class Code implements ModelInterface, ArrayAccess
         'conditionSetName' => 'getConditionSetName',
         'conditionSetId' => 'getConditionSetId',
         'codepoolName' => 'getCodepoolName',
+        'updatedAt' => 'getUpdatedAt',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -263,6 +268,7 @@ class Code implements ModelInterface, ArrayAccess
         $this->container['conditionSetName'] = isset($data['conditionSetName']) ? $data['conditionSetName'] : null;
         $this->container['conditionSetId'] = isset($data['conditionSetId']) ? $data['conditionSetId'] : null;
         $this->container['codepoolName'] = isset($data['codepoolName']) ? $data['codepoolName'] : null;
+        $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -573,6 +579,30 @@ class Code implements ModelInterface, ArrayAccess
     public function setCodepoolName($codepoolName)
     {
         $this->container['codepoolName'] = $codepoolName;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime $updatedAt updatedAt
+     *
+     * @return $this
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
 
         return $this;
     }
