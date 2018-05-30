@@ -65,6 +65,7 @@ class Article implements ModelInterface, ArrayAccess
         'netWeight' => 'int',
         'stock' => 'int',
         'isVirtual' => 'bool',
+        'allowsVariablePrice' => 'bool',
         'custom' => 'string[]',
         'versionId' => 'int',
         'aggregateId' => 'string'
@@ -84,6 +85,7 @@ class Article implements ModelInterface, ArrayAccess
         'netWeight' => null,
         'stock' => null,
         'isVirtual' => null,
+        'allowsVariablePrice' => null,
         'custom' => null,
         'versionId' => null,
         'aggregateId' => null
@@ -124,6 +126,7 @@ class Article implements ModelInterface, ArrayAccess
         'netWeight' => 'netWeight',
         'stock' => 'stock',
         'isVirtual' => 'isVirtual',
+        'allowsVariablePrice' => 'allowsVariablePrice',
         'custom' => 'custom',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
@@ -143,6 +146,7 @@ class Article implements ModelInterface, ArrayAccess
         'netWeight' => 'setNetWeight',
         'stock' => 'setStock',
         'isVirtual' => 'setIsVirtual',
+        'allowsVariablePrice' => 'setAllowsVariablePrice',
         'custom' => 'setCustom',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
@@ -162,6 +166,7 @@ class Article implements ModelInterface, ArrayAccess
         'netWeight' => 'getNetWeight',
         'stock' => 'getStock',
         'isVirtual' => 'getIsVirtual',
+        'allowsVariablePrice' => 'getAllowsVariablePrice',
         'custom' => 'getCustom',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
@@ -252,6 +257,7 @@ class Article implements ModelInterface, ArrayAccess
         $this->container['netWeight'] = isset($data['netWeight']) ? $data['netWeight'] : null;
         $this->container['stock'] = isset($data['stock']) ? $data['stock'] : null;
         $this->container['isVirtual'] = isset($data['isVirtual']) ? $data['isVirtual'] : null;
+        $this->container['allowsVariablePrice'] = isset($data['allowsVariablePrice']) ? $data['allowsVariablePrice'] : null;
         $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
@@ -491,6 +497,30 @@ class Article implements ModelInterface, ArrayAccess
     public function setIsVirtual($isVirtual)
     {
         $this->container['isVirtual'] = $isVirtual;
+
+        return $this;
+    }
+
+    /**
+     * Gets allowsVariablePrice
+     *
+     * @return bool
+     */
+    public function getAllowsVariablePrice()
+    {
+        return $this->container['allowsVariablePrice'];
+    }
+
+    /**
+     * Sets allowsVariablePrice
+     *
+     * @param bool $allowsVariablePrice allowsVariablePrice
+     *
+     * @return $this
+     */
+    public function setAllowsVariablePrice($allowsVariablePrice)
+    {
+        $this->container['allowsVariablePrice'] = $allowsVariablePrice;
 
         return $this;
     }
