@@ -70,6 +70,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolName' => 'string',
         'updatedAt' => '\DateTime',
         'createdAt' => '\DateTime',
+        'usedValue' => '\SSB\Api\Model\Money',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -93,6 +94,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolName' => null,
         'updatedAt' => 'date-time',
         'createdAt' => 'date-time',
+        'usedValue' => null,
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -137,6 +139,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolName' => 'codepoolName',
         'updatedAt' => 'updatedAt',
         'createdAt' => 'createdAt',
+        'usedValue' => 'usedValue',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -160,6 +163,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolName' => 'setCodepoolName',
         'updatedAt' => 'setUpdatedAt',
         'createdAt' => 'setCreatedAt',
+        'usedValue' => 'setUsedValue',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -183,6 +187,7 @@ class Code implements ModelInterface, ArrayAccess
         'codepoolName' => 'getCodepoolName',
         'updatedAt' => 'getUpdatedAt',
         'createdAt' => 'getCreatedAt',
+        'usedValue' => 'getUsedValue',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -275,6 +280,7 @@ class Code implements ModelInterface, ArrayAccess
         $this->container['codepoolName'] = isset($data['codepoolName']) ? $data['codepoolName'] : null;
         $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
+        $this->container['usedValue'] = isset($data['usedValue']) ? $data['usedValue'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -633,6 +639,30 @@ class Code implements ModelInterface, ArrayAccess
     public function setCreatedAt($createdAt)
     {
         $this->container['createdAt'] = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets usedValue
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getUsedValue()
+    {
+        return $this->container['usedValue'];
+    }
+
+    /**
+     * Sets usedValue
+     *
+     * @param \SSB\Api\Model\Money $usedValue usedValue
+     *
+     * @return $this
+     */
+    public function setUsedValue($usedValue)
+    {
+        $this->container['usedValue'] = $usedValue;
 
         return $this;
     }

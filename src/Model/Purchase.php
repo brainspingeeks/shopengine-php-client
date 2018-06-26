@@ -261,6 +261,8 @@ class Purchase implements ModelInterface, ArrayAccess
     const ORIGIN_STATUS_EMPTY = '';
     const ORIGIN_STATUS_READY_TO_IMPORT = 'ready_to_import';
     const ORIGIN_STATUS_IMPORTED = 'imported';
+    const ORIGIN_STATUS_ERROR_IN_IMPORT = 'error_in_import';
+    const ORIGIN_STATUS_WAIT_FOR_MANUAL = 'wait_for_manual';
     const STATUS__NEW = 'new';
     const STATUS_PLACED = 'placed';
     const STATUS_PAYMENT_FAILED = 'payment_failed';
@@ -282,6 +284,8 @@ class Purchase implements ModelInterface, ArrayAccess
             self::ORIGIN_STATUS_EMPTY,
             self::ORIGIN_STATUS_READY_TO_IMPORT,
             self::ORIGIN_STATUS_IMPORTED,
+            self::ORIGIN_STATUS_ERROR_IN_IMPORT,
+            self::ORIGIN_STATUS_WAIT_FOR_MANUAL,
         ];
     }
     
