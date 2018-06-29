@@ -55,7 +55,7 @@ class NewsletterValidation extends Validation
       * @var string[]
       */
     protected static $swaggerTypes = [
-        
+        'value' => 'string'
     ];
 
     /**
@@ -64,7 +64,7 @@ class NewsletterValidation extends Validation
       * @var string[]
       */
     protected static $swaggerFormats = [
-        
+        'value' => null
     ];
 
     /**
@@ -94,7 +94,7 @@ class NewsletterValidation extends Validation
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'value' => 'value'
     ];
 
     /**
@@ -103,7 +103,7 @@ class NewsletterValidation extends Validation
      * @var string[]
      */
     protected static $setters = [
-        
+        'value' => 'setValue'
     ];
 
     /**
@@ -112,7 +112,7 @@ class NewsletterValidation extends Validation
      * @var string[]
      */
     protected static $getters = [
-        
+        'value' => 'getValue'
     ];
 
     /**
@@ -171,6 +171,7 @@ class NewsletterValidation extends Validation
     {
         parent::__construct($data);
 
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
     }
 
     /**
@@ -200,6 +201,30 @@ class NewsletterValidation extends Validation
         return true;
     }
 
+
+    /**
+     * Gets value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param string $value value
+     *
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->container['value'] = $value;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
