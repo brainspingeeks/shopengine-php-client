@@ -61,6 +61,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleVersionId' => 'int',
         'quantity' => 'int',
         'custom' => 'string[]',
+        'id' => 'string',
         'price' => '\SSB\Api\Model\Money',
         'name' => 'string',
         'sku' => 'string',
@@ -78,6 +79,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleVersionId' => null,
         'quantity' => null,
         'custom' => null,
+        'id' => null,
         'price' => null,
         'name' => null,
         'sku' => null,
@@ -116,6 +118,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleVersionId' => 'articleVersionId',
         'quantity' => 'quantity',
         'custom' => 'custom',
+        'id' => 'id',
         'price' => 'price',
         'name' => 'name',
         'sku' => 'sku',
@@ -133,6 +136,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleVersionId' => 'setArticleVersionId',
         'quantity' => 'setQuantity',
         'custom' => 'setCustom',
+        'id' => 'setId',
         'price' => 'setPrice',
         'name' => 'setName',
         'sku' => 'setSku',
@@ -150,6 +154,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'articleVersionId' => 'getArticleVersionId',
         'quantity' => 'getQuantity',
         'custom' => 'getCustom',
+        'id' => 'getId',
         'price' => 'getPrice',
         'name' => 'getName',
         'sku' => 'getSku',
@@ -221,6 +226,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         $this->container['articleVersionId'] = isset($data['articleVersionId']) ? $data['articleVersionId'] : null;
         $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
         $this->container['custom'] = isset($data['custom']) ? $data['custom'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['price'] = isset($data['price']) ? $data['price'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
@@ -345,6 +351,30 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     public function setCustom($custom)
     {
         $this->container['custom'] = $custom;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id id
+     *
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->container['id'] = $id;
 
         return $this;
     }
