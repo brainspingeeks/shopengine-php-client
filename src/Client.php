@@ -59,6 +59,8 @@ class Client
                 $parameter,
                 ['timestamp' => $timestamp, 'signature' => $signature]
             ));
+            
+            $requestQuery = htmlspecialchars($requestQuery, ENT_QUOTES, 'UTF-8');
 
             $url = self::API_VERSION . "/$resource?$requestQuery";
 
