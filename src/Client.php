@@ -59,7 +59,7 @@ class Client
                 $parameter,
                 ['timestamp' => $timestamp, 'signature' => $signature]
             ));
-
+            
             $url = self::API_VERSION . "/$resource?$requestQuery";
 
             $response = $client->request(
