@@ -67,6 +67,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'originStatus' => 'string',
         'status' => 'string',
         'paymentInformation' => '\SSB\Api\Model\PaymentInformation',
+        'shippingMethod' => 'string',
         'purchaseEvents' => '\SSB\Api\Model\EventSourceEvent[]',
         'grandTotal' => '\SSB\Api\Model\Money',
         'subTotal' => '\SSB\Api\Model\Money',
@@ -97,6 +98,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'originStatus' => null,
         'status' => null,
         'paymentInformation' => null,
+        'shippingMethod' => null,
         'purchaseEvents' => null,
         'grandTotal' => null,
         'subTotal' => null,
@@ -148,6 +150,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'originStatus' => 'originStatus',
         'status' => 'status',
         'paymentInformation' => 'paymentInformation',
+        'shippingMethod' => 'shippingMethod',
         'purchaseEvents' => 'purchaseEvents',
         'grandTotal' => 'grandTotal',
         'subTotal' => 'subTotal',
@@ -178,6 +181,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'originStatus' => 'setOriginStatus',
         'status' => 'setStatus',
         'paymentInformation' => 'setPaymentInformation',
+        'shippingMethod' => 'setShippingMethod',
         'purchaseEvents' => 'setPurchaseEvents',
         'grandTotal' => 'setGrandTotal',
         'subTotal' => 'setSubTotal',
@@ -208,6 +212,7 @@ class Purchase implements ModelInterface, ArrayAccess
         'originStatus' => 'getOriginStatus',
         'status' => 'getStatus',
         'paymentInformation' => 'getPaymentInformation',
+        'shippingMethod' => 'getShippingMethod',
         'purchaseEvents' => 'getPurchaseEvents',
         'grandTotal' => 'getGrandTotal',
         'subTotal' => 'getSubTotal',
@@ -338,6 +343,7 @@ class Purchase implements ModelInterface, ArrayAccess
         $this->container['originStatus'] = isset($data['originStatus']) ? $data['originStatus'] : null;
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['paymentInformation'] = isset($data['paymentInformation']) ? $data['paymentInformation'] : null;
+        $this->container['shippingMethod'] = isset($data['shippingMethod']) ? $data['shippingMethod'] : null;
         $this->container['purchaseEvents'] = isset($data['purchaseEvents']) ? $data['purchaseEvents'] : null;
         $this->container['grandTotal'] = isset($data['grandTotal']) ? $data['grandTotal'] : null;
         $this->container['subTotal'] = isset($data['subTotal']) ? $data['subTotal'] : null;
@@ -655,6 +661,30 @@ class Purchase implements ModelInterface, ArrayAccess
     public function setPaymentInformation($paymentInformation)
     {
         $this->container['paymentInformation'] = $paymentInformation;
+
+        return $this;
+    }
+
+    /**
+     * Gets shippingMethod
+     *
+     * @return string
+     */
+    public function getShippingMethod()
+    {
+        return $this->container['shippingMethod'];
+    }
+
+    /**
+     * Sets shippingMethod
+     *
+     * @param string $shippingMethod shippingMethod
+     *
+     * @return $this
+     */
+    public function setShippingMethod($shippingMethod)
+    {
+        $this->container['shippingMethod'] = $shippingMethod;
 
         return $this;
     }
