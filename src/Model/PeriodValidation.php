@@ -1,6 +1,6 @@
 <?php
 /**
- * ShippingCostValidation
+ * PeriodValidation
  *
  * PHP version 5
  *
@@ -28,28 +28,26 @@
  */
 
 namespace SSB\Api\Model;
-
-use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * ShippingCostValidation Class Doc Comment
+ * PeriodValidation Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ShippingCostValidation implements ModelInterface, ArrayAccess
+class PeriodValidation extends ShippingCostValidation 
 {
-    const DISCRIMINATOR = 'type';
+    const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ShippingCostValidation';
+    protected static $swaggerModelName = 'PeriodValidation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +55,10 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'id' => 'string',
-        'type' => 'string'
+        'fromWeekDay' => 'string',
+        'fromTime' => 'string',
+        'toWeekDay' => 'string',
+        'toTime' => 'string'
     ];
 
     /**
@@ -67,8 +67,10 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'id' => null,
-        'type' => null
+        'fromWeekDay' => null,
+        'fromTime' => null,
+        'toWeekDay' => null,
+        'toTime' => null
     ];
 
     /**
@@ -78,7 +80,7 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -88,7 +90,7 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -98,8 +100,10 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'type' => 'type'
+        'fromWeekDay' => 'fromWeekDay',
+        'fromTime' => 'fromTime',
+        'toWeekDay' => 'toWeekDay',
+        'toTime' => 'toTime'
     ];
 
     /**
@@ -108,8 +112,10 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'type' => 'setType'
+        'fromWeekDay' => 'setFromWeekDay',
+        'fromTime' => 'setFromTime',
+        'toWeekDay' => 'setToWeekDay',
+        'toTime' => 'setToTime'
     ];
 
     /**
@@ -118,8 +124,10 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'type' => 'getType'
+        'fromWeekDay' => 'getFromWeekDay',
+        'fromTime' => 'getFromTime',
+        'toWeekDay' => 'getToWeekDay',
+        'toTime' => 'getToTime'
     ];
 
     /**
@@ -130,7 +138,7 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -140,7 +148,7 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -150,7 +158,7 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -167,12 +175,6 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -182,12 +184,12 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        parent::__construct($data);
 
-        // Initialize discriminator property with the model name.
-        $discriminator = array_search('type', self::$attributeMap);
-        $this->container[$discriminator] = static::$swaggerModelName;
+        $this->container['fromWeekDay'] = isset($data['fromWeekDay']) ? $data['fromWeekDay'] : null;
+        $this->container['fromTime'] = isset($data['fromTime']) ? $data['fromTime'] : null;
+        $this->container['toWeekDay'] = isset($data['toWeekDay']) ? $data['toWeekDay'] : null;
+        $this->container['toTime'] = isset($data['toTime']) ? $data['toTime'] : null;
     }
 
     /**
@@ -197,8 +199,20 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
+        if ($this->container['fromWeekDay'] === null) {
+            $invalidProperties[] = "'fromWeekDay' can't be null";
+        }
+        if ($this->container['fromTime'] === null) {
+            $invalidProperties[] = "'fromTime' can't be null";
+        }
+        if ($this->container['toWeekDay'] === null) {
+            $invalidProperties[] = "'toWeekDay' can't be null";
+        }
+        if ($this->container['toTime'] === null) {
+            $invalidProperties[] = "'toTime' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -210,55 +224,118 @@ class ShippingCostValidation implements ModelInterface, ArrayAccess
      */
     public function valid()
     {
+        if (!parent::valid()) {
+            return false;
+        }
 
+        if ($this->container['fromWeekDay'] === null) {
+            return false;
+        }
+        if ($this->container['fromTime'] === null) {
+            return false;
+        }
+        if ($this->container['toWeekDay'] === null) {
+            return false;
+        }
+        if ($this->container['toTime'] === null) {
+            return false;
+        }
         return true;
     }
 
 
     /**
-     * Gets id
+     * Gets fromWeekDay
      *
      * @return string
      */
-    public function getId()
+    public function getFromWeekDay()
     {
-        return $this->container['id'];
+        return $this->container['fromWeekDay'];
     }
 
     /**
-     * Sets id
+     * Sets fromWeekDay
      *
-     * @param string $id id
+     * @param string $fromWeekDay 
      *
      * @return $this
      */
-    public function setId($id)
+    public function setFromWeekDay($fromWeekDay)
     {
-        $this->container['id'] = $id;
+        $this->container['fromWeekDay'] = $fromWeekDay;
 
         return $this;
     }
 
     /**
-     * Gets type
+     * Gets fromTime
      *
      * @return string
      */
-    public function getType()
+    public function getFromTime()
     {
-        return $this->container['type'];
+        return $this->container['fromTime'];
     }
 
     /**
-     * Sets type
+     * Sets fromTime
      *
-     * @param string $type type
+     * @param string $fromTime 
      *
      * @return $this
      */
-    public function setType($type)
+    public function setFromTime($fromTime)
     {
-        $this->container['type'] = $type;
+        $this->container['fromTime'] = $fromTime;
+
+        return $this;
+    }
+
+    /**
+     * Gets toWeekDay
+     *
+     * @return string
+     */
+    public function getToWeekDay()
+    {
+        return $this->container['toWeekDay'];
+    }
+
+    /**
+     * Sets toWeekDay
+     *
+     * @param string $toWeekDay 
+     *
+     * @return $this
+     */
+    public function setToWeekDay($toWeekDay)
+    {
+        $this->container['toWeekDay'] = $toWeekDay;
+
+        return $this;
+    }
+
+    /**
+     * Gets toTime
+     *
+     * @return string
+     */
+    public function getToTime()
+    {
+        return $this->container['toTime'];
+    }
+
+    /**
+     * Sets toTime
+     *
+     * @param string $toTime 
+     *
+     * @return $this
+     */
+    public function setToTime($toTime)
+    {
+        $this->container['toTime'] = $toTime;
 
         return $this;
     }

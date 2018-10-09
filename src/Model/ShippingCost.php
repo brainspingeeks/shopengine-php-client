@@ -59,12 +59,14 @@ class ShippingCost implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'status' => 'string',
         'time' => 'int',
+        'timeMax' => 'int',
         'country' => 'string',
         'name' => 'string',
         'price' => '\SSB\Api\Model\Money',
         'options' => '\SSB\Api\Model\ShippingCostOption[]',
         'orderDeadline' => 'string',
         'validation' => '\SSB\Api\Model\ShippingCostValidation[]',
+        'originIdentification' => 'string',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -77,12 +79,14 @@ class ShippingCost implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'status' => null,
         'time' => null,
+        'timeMax' => null,
         'country' => null,
         'name' => null,
         'price' => null,
         'options' => null,
         'orderDeadline' => null,
         'validation' => null,
+        'originIdentification' => null,
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -116,12 +120,14 @@ class ShippingCost implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'status' => 'status',
         'time' => 'time',
+        'timeMax' => 'timeMax',
         'country' => 'country',
         'name' => 'name',
         'price' => 'price',
         'options' => 'options',
         'orderDeadline' => 'orderDeadline',
         'validation' => 'validation',
+        'originIdentification' => 'originIdentification',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -134,12 +140,14 @@ class ShippingCost implements ModelInterface, ArrayAccess
     protected static $setters = [
         'status' => 'setStatus',
         'time' => 'setTime',
+        'timeMax' => 'setTimeMax',
         'country' => 'setCountry',
         'name' => 'setName',
         'price' => 'setPrice',
         'options' => 'setOptions',
         'orderDeadline' => 'setOrderDeadline',
         'validation' => 'setValidation',
+        'originIdentification' => 'setOriginIdentification',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -152,12 +160,14 @@ class ShippingCost implements ModelInterface, ArrayAccess
     protected static $getters = [
         'status' => 'getStatus',
         'time' => 'getTime',
+        'timeMax' => 'getTimeMax',
         'country' => 'getCountry',
         'name' => 'getName',
         'price' => 'getPrice',
         'options' => 'getOptions',
         'orderDeadline' => 'getOrderDeadline',
         'validation' => 'getValidation',
+        'originIdentification' => 'getOriginIdentification',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -239,12 +249,14 @@ class ShippingCost implements ModelInterface, ArrayAccess
     {
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['time'] = isset($data['time']) ? $data['time'] : null;
+        $this->container['timeMax'] = isset($data['timeMax']) ? $data['timeMax'] : null;
         $this->container['country'] = isset($data['country']) ? $data['country'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['price'] = isset($data['price']) ? $data['price'] : null;
         $this->container['options'] = isset($data['options']) ? $data['options'] : null;
         $this->container['orderDeadline'] = isset($data['orderDeadline']) ? $data['orderDeadline'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
+        $this->container['originIdentification'] = isset($data['originIdentification']) ? $data['originIdentification'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -339,6 +351,30 @@ class ShippingCost implements ModelInterface, ArrayAccess
     public function setTime($time)
     {
         $this->container['time'] = $time;
+
+        return $this;
+    }
+
+    /**
+     * Gets timeMax
+     *
+     * @return int
+     */
+    public function getTimeMax()
+    {
+        return $this->container['timeMax'];
+    }
+
+    /**
+     * Sets timeMax
+     *
+     * @param int $timeMax timeMax
+     *
+     * @return $this
+     */
+    public function setTimeMax($timeMax)
+    {
+        $this->container['timeMax'] = $timeMax;
 
         return $this;
     }
@@ -483,6 +519,30 @@ class ShippingCost implements ModelInterface, ArrayAccess
     public function setValidation($validation)
     {
         $this->container['validation'] = $validation;
+
+        return $this;
+    }
+
+    /**
+     * Gets originIdentification
+     *
+     * @return string
+     */
+    public function getOriginIdentification()
+    {
+        return $this->container['originIdentification'];
+    }
+
+    /**
+     * Sets originIdentification
+     *
+     * @param string $originIdentification originIdentification
+     *
+     * @return $this
+     */
+    public function setOriginIdentification($originIdentification)
+    {
+        $this->container['originIdentification'] = $originIdentification;
 
         return $this;
     }
