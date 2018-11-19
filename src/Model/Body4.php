@@ -58,8 +58,9 @@ class Body4 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'name' => 'string',
-        'conditions' => 'string[]',
-        'group' => 'int'
+        'description' => 'string',
+        'trackingSlug' => 'string',
+        'defaultConditionSetAggregateId' => 'string'
     ];
 
     /**
@@ -69,8 +70,9 @@ class Body4 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'name' => null,
-        'conditions' => null,
-        'group' => null
+        'description' => null,
+        'trackingSlug' => null,
+        'defaultConditionSetAggregateId' => null
     ];
 
     /**
@@ -101,8 +103,9 @@ class Body4 implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'conditions' => 'conditions',
-        'group' => 'group'
+        'description' => 'description',
+        'trackingSlug' => 'trackingSlug',
+        'defaultConditionSetAggregateId' => 'defaultConditionSetAggregateId'
     ];
 
     /**
@@ -112,8 +115,9 @@ class Body4 implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'name' => 'setName',
-        'conditions' => 'setConditions',
-        'group' => 'setGroup'
+        'description' => 'setDescription',
+        'trackingSlug' => 'setTrackingSlug',
+        'defaultConditionSetAggregateId' => 'setDefaultConditionSetAggregateId'
     ];
 
     /**
@@ -123,8 +127,9 @@ class Body4 implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'name' => 'getName',
-        'conditions' => 'getConditions',
-        'group' => 'getGroup'
+        'description' => 'getDescription',
+        'trackingSlug' => 'getTrackingSlug',
+        'defaultConditionSetAggregateId' => 'getDefaultConditionSetAggregateId'
     ];
 
     /**
@@ -188,8 +193,9 @@ class Body4 implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
-        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
+        $this->container['defaultConditionSetAggregateId'] = isset($data['defaultConditionSetAggregateId']) ? $data['defaultConditionSetAggregateId'] : null;
     }
 
     /**
@@ -201,12 +207,6 @@ class Body4 implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
-        if ($this->container['conditions'] === null) {
-            $invalidProperties[] = "'conditions' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -219,12 +219,6 @@ class Body4 implements ModelInterface, ArrayAccess
     public function valid()
     {
 
-        if ($this->container['name'] === null) {
-            return false;
-        }
-        if ($this->container['conditions'] === null) {
-            return false;
-        }
         return true;
     }
 
@@ -254,49 +248,73 @@ class Body4 implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets conditions
+     * Gets description
      *
-     * @return string[]
+     * @return string
      */
-    public function getConditions()
+    public function getDescription()
     {
-        return $this->container['conditions'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets conditions
+     * Sets description
      *
-     * @param string[] $conditions conditions
+     * @param string $description description
      *
      * @return $this
      */
-    public function setConditions($conditions)
+    public function setDescription($description)
     {
-        $this->container['conditions'] = $conditions;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets group
+     * Gets trackingSlug
      *
-     * @return int
+     * @return string
      */
-    public function getGroup()
+    public function getTrackingSlug()
     {
-        return $this->container['group'];
+        return $this->container['trackingSlug'];
     }
 
     /**
-     * Sets group
+     * Sets trackingSlug
      *
-     * @param int $group group
+     * @param string $trackingSlug trackingSlug
      *
      * @return $this
      */
-    public function setGroup($group)
+    public function setTrackingSlug($trackingSlug)
     {
-        $this->container['group'] = $group;
+        $this->container['trackingSlug'] = $trackingSlug;
+
+        return $this;
+    }
+
+    /**
+     * Gets defaultConditionSetAggregateId
+     *
+     * @return string
+     */
+    public function getDefaultConditionSetAggregateId()
+    {
+        return $this->container['defaultConditionSetAggregateId'];
+    }
+
+    /**
+     * Sets defaultConditionSetAggregateId
+     *
+     * @param string $defaultConditionSetAggregateId defaultConditionSetAggregateId
+     *
+     * @return $this
+     */
+    public function setDefaultConditionSetAggregateId($defaultConditionSetAggregateId)
+    {
+        $this->container['defaultConditionSetAggregateId'] = $defaultConditionSetAggregateId;
 
         return $this;
     }

@@ -76,6 +76,8 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => '\SSB\Api\Model\Money',
         'shippingTax' => '\SSB\Api\Model\Money',
         'orderId' => 'string',
+        'codelessVersionId' => 'int',
+        'codeless' => '\SSB\Api\Model\Codeless',
         'orderDate' => '\DateTime',
         'trackingCodes' => 'string[]',
         'versionId' => 'int',
@@ -107,6 +109,8 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => null,
         'shippingTax' => null,
         'orderId' => null,
+        'codelessVersionId' => null,
+        'codeless' => null,
         'orderDate' => 'date-time',
         'trackingCodes' => null,
         'versionId' => null,
@@ -159,6 +163,8 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => 'shipping',
         'shippingTax' => 'shippingTax',
         'orderId' => 'orderId',
+        'codelessVersionId' => 'codelessVersionId',
+        'codeless' => 'codeless',
         'orderDate' => 'orderDate',
         'trackingCodes' => 'trackingCodes',
         'versionId' => 'versionId',
@@ -190,6 +196,8 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => 'setShipping',
         'shippingTax' => 'setShippingTax',
         'orderId' => 'setOrderId',
+        'codelessVersionId' => 'setCodelessVersionId',
+        'codeless' => 'setCodeless',
         'orderDate' => 'setOrderDate',
         'trackingCodes' => 'setTrackingCodes',
         'versionId' => 'setVersionId',
@@ -221,6 +229,8 @@ class Purchase implements ModelInterface, ArrayAccess
         'shipping' => 'getShipping',
         'shippingTax' => 'getShippingTax',
         'orderId' => 'getOrderId',
+        'codelessVersionId' => 'getCodelessVersionId',
+        'codeless' => 'getCodeless',
         'orderDate' => 'getOrderDate',
         'trackingCodes' => 'getTrackingCodes',
         'versionId' => 'getVersionId',
@@ -352,6 +362,8 @@ class Purchase implements ModelInterface, ArrayAccess
         $this->container['shipping'] = isset($data['shipping']) ? $data['shipping'] : null;
         $this->container['shippingTax'] = isset($data['shippingTax']) ? $data['shippingTax'] : null;
         $this->container['orderId'] = isset($data['orderId']) ? $data['orderId'] : null;
+        $this->container['codelessVersionId'] = isset($data['codelessVersionId']) ? $data['codelessVersionId'] : null;
+        $this->container['codeless'] = isset($data['codeless']) ? $data['codeless'] : null;
         $this->container['orderDate'] = isset($data['orderDate']) ? $data['orderDate'] : null;
         $this->container['trackingCodes'] = isset($data['trackingCodes']) ? $data['trackingCodes'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
@@ -877,6 +889,54 @@ class Purchase implements ModelInterface, ArrayAccess
     public function setOrderId($orderId)
     {
         $this->container['orderId'] = $orderId;
+
+        return $this;
+    }
+
+    /**
+     * Gets codelessVersionId
+     *
+     * @return int
+     */
+    public function getCodelessVersionId()
+    {
+        return $this->container['codelessVersionId'];
+    }
+
+    /**
+     * Sets codelessVersionId
+     *
+     * @param int $codelessVersionId codelessVersionId
+     *
+     * @return $this
+     */
+    public function setCodelessVersionId($codelessVersionId)
+    {
+        $this->container['codelessVersionId'] = $codelessVersionId;
+
+        return $this;
+    }
+
+    /**
+     * Gets codeless
+     *
+     * @return \SSB\Api\Model\Codeless
+     */
+    public function getCodeless()
+    {
+        return $this->container['codeless'];
+    }
+
+    /**
+     * Sets codeless
+     *
+     * @param \SSB\Api\Model\Codeless $codeless codeless
+     *
+     * @return $this
+     */
+    public function setCodeless($codeless)
+    {
+        $this->container['codeless'] = $codeless;
 
         return $this;
     }

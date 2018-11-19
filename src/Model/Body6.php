@@ -1,6 +1,6 @@
 <?php
 /**
- * Body3
+ * Body6
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * Body3 Class Doc Comment
+ * Body6 Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Body3 implements ModelInterface, ArrayAccess
+class Body6 implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Body3 implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'body_3';
+    protected static $swaggerModelName = 'body_6';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,8 @@ class Body3 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'name' => 'string',
-        'conditionSetVersionId' => 'int',
-        'status' => 'string',
-        'validation' => '\SSB\Api\Model\Validation[]',
-        'note' => 'string'
+        'conditions' => 'string[]',
+        'group' => 'int'
     ];
 
     /**
@@ -71,10 +69,8 @@ class Body3 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'name' => null,
-        'conditionSetVersionId' => null,
-        'status' => null,
-        'validation' => null,
-        'note' => null
+        'conditions' => null,
+        'group' => null
     ];
 
     /**
@@ -105,10 +101,8 @@ class Body3 implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'conditionSetVersionId' => 'conditionSetVersionId',
-        'status' => 'status',
-        'validation' => 'validation',
-        'note' => 'note'
+        'conditions' => 'conditions',
+        'group' => 'group'
     ];
 
     /**
@@ -118,10 +112,8 @@ class Body3 implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'name' => 'setName',
-        'conditionSetVersionId' => 'setConditionSetVersionId',
-        'status' => 'setStatus',
-        'validation' => 'setValidation',
-        'note' => 'setNote'
+        'conditions' => 'setConditions',
+        'group' => 'setGroup'
     ];
 
     /**
@@ -131,10 +123,8 @@ class Body3 implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'name' => 'getName',
-        'conditionSetVersionId' => 'getConditionSetVersionId',
-        'status' => 'getStatus',
-        'validation' => 'getValidation',
-        'note' => 'getNote'
+        'conditions' => 'getConditions',
+        'group' => 'getGroup'
     ];
 
     /**
@@ -178,23 +168,8 @@ class Body3 implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const STATUS_ENABLED = 'enabled';
-    const STATUS_DISABLED = 'disabled';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_ENABLED,
-            self::STATUS_DISABLED,
-        ];
-    }
     
 
     /**
@@ -213,10 +188,8 @@ class Body3 implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['conditionSetVersionId'] = isset($data['conditionSetVersionId']) ? $data['conditionSetVersionId'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
-        $this->container['note'] = isset($data['note']) ? $data['note'] : '';
+        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
+        $this->container['group'] = isset($data['group']) ? $data['group'] : null;
     }
 
     /**
@@ -231,22 +204,8 @@ class Body3 implements ModelInterface, ArrayAccess
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['conditionSetVersionId'] === null) {
-            $invalidProperties[] = "'conditionSetVersionId' can't be null";
-        }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($this->container['status'], $allowedValues)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'status', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['validation'] === null) {
-            $invalidProperties[] = "'validation' can't be null";
+        if ($this->container['conditions'] === null) {
+            $invalidProperties[] = "'conditions' can't be null";
         }
         return $invalidProperties;
     }
@@ -263,17 +222,7 @@ class Body3 implements ModelInterface, ArrayAccess
         if ($this->container['name'] === null) {
             return false;
         }
-        if ($this->container['conditionSetVersionId'] === null) {
-            return false;
-        }
-        if ($this->container['status'] === null) {
-            return false;
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($this->container['status'], $allowedValues)) {
-            return false;
-        }
-        if ($this->container['validation'] === null) {
+        if ($this->container['conditions'] === null) {
             return false;
         }
         return true;
@@ -305,106 +254,49 @@ class Body3 implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets conditionSetVersionId
+     * Gets conditions
+     *
+     * @return string[]
+     */
+    public function getConditions()
+    {
+        return $this->container['conditions'];
+    }
+
+    /**
+     * Sets conditions
+     *
+     * @param string[] $conditions conditions
+     *
+     * @return $this
+     */
+    public function setConditions($conditions)
+    {
+        $this->container['conditions'] = $conditions;
+
+        return $this;
+    }
+
+    /**
+     * Gets group
      *
      * @return int
      */
-    public function getConditionSetVersionId()
+    public function getGroup()
     {
-        return $this->container['conditionSetVersionId'];
+        return $this->container['group'];
     }
 
     /**
-     * Sets conditionSetVersionId
+     * Sets group
      *
-     * @param int $conditionSetVersionId conditionSetVersionId
+     * @param int $group group
      *
      * @return $this
      */
-    public function setConditionSetVersionId($conditionSetVersionId)
+    public function setGroup($group)
     {
-        $this->container['conditionSetVersionId'] = $conditionSetVersionId;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status status
-     *
-     * @return $this
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'status', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
-     * Gets validation
-     *
-     * @return \SSB\Api\Model\Validation[]
-     */
-    public function getValidation()
-    {
-        return $this->container['validation'];
-    }
-
-    /**
-     * Sets validation
-     *
-     * @param \SSB\Api\Model\Validation[] $validation validation
-     *
-     * @return $this
-     */
-    public function setValidation($validation)
-    {
-        $this->container['validation'] = $validation;
-
-        return $this;
-    }
-
-    /**
-     * Gets note
-     *
-     * @return string
-     */
-    public function getNote()
-    {
-        return $this->container['note'];
-    }
-
-    /**
-     * Sets note
-     *
-     * @param string $note note
-     *
-     * @return $this
-     */
-    public function setNote($note)
-    {
-        $this->container['note'] = $note;
+        $this->container['group'] = $group;
 
         return $this;
     }

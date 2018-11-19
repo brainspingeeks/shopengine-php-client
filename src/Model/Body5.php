@@ -1,6 +1,6 @@
 <?php
 /**
- * Body3
+ * Body5
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * Body3 Class Doc Comment
+ * Body5 Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Body3 implements ModelInterface, ArrayAccess
+class Body5 implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Body3 implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'body_3';
+    protected static $swaggerModelName = 'body_5';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,9 @@ class Body3 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'name' => 'string',
-        'conditionSetVersionId' => 'int',
-        'status' => 'string',
-        'validation' => '\SSB\Api\Model\Validation[]',
-        'note' => 'string'
+        'description' => 'string',
+        'trackingSlug' => 'string',
+        'defaultConditionSetAggregateId' => 'string'
     ];
 
     /**
@@ -71,10 +70,9 @@ class Body3 implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'name' => null,
-        'conditionSetVersionId' => null,
-        'status' => null,
-        'validation' => null,
-        'note' => null
+        'description' => null,
+        'trackingSlug' => null,
+        'defaultConditionSetAggregateId' => null
     ];
 
     /**
@@ -105,10 +103,9 @@ class Body3 implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'name' => 'name',
-        'conditionSetVersionId' => 'conditionSetVersionId',
-        'status' => 'status',
-        'validation' => 'validation',
-        'note' => 'note'
+        'description' => 'description',
+        'trackingSlug' => 'trackingSlug',
+        'defaultConditionSetAggregateId' => 'defaultConditionSetAggregateId'
     ];
 
     /**
@@ -118,10 +115,9 @@ class Body3 implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'name' => 'setName',
-        'conditionSetVersionId' => 'setConditionSetVersionId',
-        'status' => 'setStatus',
-        'validation' => 'setValidation',
-        'note' => 'setNote'
+        'description' => 'setDescription',
+        'trackingSlug' => 'setTrackingSlug',
+        'defaultConditionSetAggregateId' => 'setDefaultConditionSetAggregateId'
     ];
 
     /**
@@ -131,10 +127,9 @@ class Body3 implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'name' => 'getName',
-        'conditionSetVersionId' => 'getConditionSetVersionId',
-        'status' => 'getStatus',
-        'validation' => 'getValidation',
-        'note' => 'getNote'
+        'description' => 'getDescription',
+        'trackingSlug' => 'getTrackingSlug',
+        'defaultConditionSetAggregateId' => 'getDefaultConditionSetAggregateId'
     ];
 
     /**
@@ -178,23 +173,8 @@ class Body3 implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
-    const STATUS_ENABLED = 'enabled';
-    const STATUS_DISABLED = 'disabled';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getStatusAllowableValues()
-    {
-        return [
-            self::STATUS_ENABLED,
-            self::STATUS_DISABLED,
-        ];
-    }
     
 
     /**
@@ -213,10 +193,9 @@ class Body3 implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['conditionSetVersionId'] = isset($data['conditionSetVersionId']) ? $data['conditionSetVersionId'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
-        $this->container['note'] = isset($data['note']) ? $data['note'] : '';
+        $this->container['description'] = isset($data['description']) ? $data['description'] : null;
+        $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
+        $this->container['defaultConditionSetAggregateId'] = isset($data['defaultConditionSetAggregateId']) ? $data['defaultConditionSetAggregateId'] : null;
     }
 
     /**
@@ -231,22 +210,11 @@ class Body3 implements ModelInterface, ArrayAccess
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['conditionSetVersionId'] === null) {
-            $invalidProperties[] = "'conditionSetVersionId' can't be null";
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($this->container['status'], $allowedValues)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'status', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['validation'] === null) {
-            $invalidProperties[] = "'validation' can't be null";
+        if ($this->container['trackingSlug'] === null) {
+            $invalidProperties[] = "'trackingSlug' can't be null";
         }
         return $invalidProperties;
     }
@@ -263,17 +231,10 @@ class Body3 implements ModelInterface, ArrayAccess
         if ($this->container['name'] === null) {
             return false;
         }
-        if ($this->container['conditionSetVersionId'] === null) {
+        if ($this->container['description'] === null) {
             return false;
         }
-        if ($this->container['status'] === null) {
-            return false;
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($this->container['status'], $allowedValues)) {
-            return false;
-        }
-        if ($this->container['validation'] === null) {
+        if ($this->container['trackingSlug'] === null) {
             return false;
         }
         return true;
@@ -305,106 +266,73 @@ class Body3 implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets conditionSetVersionId
-     *
-     * @return int
-     */
-    public function getConditionSetVersionId()
-    {
-        return $this->container['conditionSetVersionId'];
-    }
-
-    /**
-     * Sets conditionSetVersionId
-     *
-     * @param int $conditionSetVersionId conditionSetVersionId
-     *
-     * @return $this
-     */
-    public function setConditionSetVersionId($conditionSetVersionId)
-    {
-        $this->container['conditionSetVersionId'] = $conditionSetVersionId;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
+     * Gets description
      *
      * @return string
      */
-    public function getStatus()
+    public function getDescription()
     {
-        return $this->container['status'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets status
+     * Sets description
      *
-     * @param string $status status
+     * @param string $description description
      *
      * @return $this
      */
-    public function setStatus($status)
+    public function setDescription($description)
     {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'status', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets validation
-     *
-     * @return \SSB\Api\Model\Validation[]
-     */
-    public function getValidation()
-    {
-        return $this->container['validation'];
-    }
-
-    /**
-     * Sets validation
-     *
-     * @param \SSB\Api\Model\Validation[] $validation validation
-     *
-     * @return $this
-     */
-    public function setValidation($validation)
-    {
-        $this->container['validation'] = $validation;
-
-        return $this;
-    }
-
-    /**
-     * Gets note
+     * Gets trackingSlug
      *
      * @return string
      */
-    public function getNote()
+    public function getTrackingSlug()
     {
-        return $this->container['note'];
+        return $this->container['trackingSlug'];
     }
 
     /**
-     * Sets note
+     * Sets trackingSlug
      *
-     * @param string $note note
+     * @param string $trackingSlug trackingSlug
      *
      * @return $this
      */
-    public function setNote($note)
+    public function setTrackingSlug($trackingSlug)
     {
-        $this->container['note'] = $note;
+        $this->container['trackingSlug'] = $trackingSlug;
+
+        return $this;
+    }
+
+    /**
+     * Gets defaultConditionSetAggregateId
+     *
+     * @return string
+     */
+    public function getDefaultConditionSetAggregateId()
+    {
+        return $this->container['defaultConditionSetAggregateId'];
+    }
+
+    /**
+     * Sets defaultConditionSetAggregateId
+     *
+     * @param string $defaultConditionSetAggregateId defaultConditionSetAggregateId
+     *
+     * @return $this
+     */
+    public function setDefaultConditionSetAggregateId($defaultConditionSetAggregateId)
+    {
+        $this->container['defaultConditionSetAggregateId'] = $defaultConditionSetAggregateId;
 
         return $this;
     }

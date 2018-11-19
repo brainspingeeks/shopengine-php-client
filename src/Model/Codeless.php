@@ -1,6 +1,6 @@
 <?php
 /**
- * Code
+ * Codeless
  *
  * PHP version 5
  *
@@ -33,14 +33,14 @@ use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * Code Class Doc Comment
+ * Codeless Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Code implements ModelInterface, ArrayAccess
+class Codeless implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class Code implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Code';
+    protected static $swaggerModelName = 'Codeless';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,15 +59,13 @@ class Code implements ModelInterface, ArrayAccess
     protected static $swaggerTypes = [
         'status' => 'string',
         'validation' => '\SSB\Api\Model\Validation[]',
-        'code' => 'string',
+        'name' => 'string',
         'note' => 'string',
-        'codepoolId' => 'int',
         'usages' => 'string',
         'usagesRaw' => '\SSB\Api\Model\Usages',
         'conditionSetActive' => '\SSB\Api\Model\ConditionSet',
         'conditionSetName' => 'string',
         'conditionSetId' => 'string',
-        'codepoolName' => 'string',
         'updatedAt' => '\DateTime',
         'createdAt' => '\DateTime',
         'usedValue' => '\SSB\Api\Model\Money',
@@ -83,15 +81,13 @@ class Code implements ModelInterface, ArrayAccess
     protected static $swaggerFormats = [
         'status' => null,
         'validation' => null,
-        'code' => null,
+        'name' => null,
         'note' => null,
-        'codepoolId' => null,
         'usages' => null,
         'usagesRaw' => null,
         'conditionSetActive' => null,
         'conditionSetName' => null,
         'conditionSetId' => null,
-        'codepoolName' => null,
         'updatedAt' => 'date-time',
         'createdAt' => 'date-time',
         'usedValue' => null,
@@ -128,15 +124,13 @@ class Code implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'status' => 'status',
         'validation' => 'validation',
-        'code' => 'code',
+        'name' => 'name',
         'note' => 'note',
-        'codepoolId' => 'codepoolId',
         'usages' => 'usages',
         'usagesRaw' => 'usagesRaw',
         'conditionSetActive' => 'conditionSetActive',
         'conditionSetName' => 'conditionSetName',
         'conditionSetId' => 'conditionSetId',
-        'codepoolName' => 'codepoolName',
         'updatedAt' => 'updatedAt',
         'createdAt' => 'createdAt',
         'usedValue' => 'usedValue',
@@ -152,15 +146,13 @@ class Code implements ModelInterface, ArrayAccess
     protected static $setters = [
         'status' => 'setStatus',
         'validation' => 'setValidation',
-        'code' => 'setCode',
+        'name' => 'setName',
         'note' => 'setNote',
-        'codepoolId' => 'setCodepoolId',
         'usages' => 'setUsages',
         'usagesRaw' => 'setUsagesRaw',
         'conditionSetActive' => 'setConditionSetActive',
         'conditionSetName' => 'setConditionSetName',
         'conditionSetId' => 'setConditionSetId',
-        'codepoolName' => 'setCodepoolName',
         'updatedAt' => 'setUpdatedAt',
         'createdAt' => 'setCreatedAt',
         'usedValue' => 'setUsedValue',
@@ -176,15 +168,13 @@ class Code implements ModelInterface, ArrayAccess
     protected static $getters = [
         'status' => 'getStatus',
         'validation' => 'getValidation',
-        'code' => 'getCode',
+        'name' => 'getName',
         'note' => 'getNote',
-        'codepoolId' => 'getCodepoolId',
         'usages' => 'getUsages',
         'usagesRaw' => 'getUsagesRaw',
         'conditionSetActive' => 'getConditionSetActive',
         'conditionSetName' => 'getConditionSetName',
         'conditionSetId' => 'getConditionSetId',
-        'codepoolName' => 'getCodepoolName',
         'updatedAt' => 'getUpdatedAt',
         'createdAt' => 'getCreatedAt',
         'usedValue' => 'getUsedValue',
@@ -269,15 +259,13 @@ class Code implements ModelInterface, ArrayAccess
     {
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
-        $this->container['code'] = isset($data['code']) ? $data['code'] : null;
+        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['note'] = isset($data['note']) ? $data['note'] : null;
-        $this->container['codepoolId'] = isset($data['codepoolId']) ? $data['codepoolId'] : null;
         $this->container['usages'] = isset($data['usages']) ? $data['usages'] : null;
         $this->container['usagesRaw'] = isset($data['usagesRaw']) ? $data['usagesRaw'] : null;
         $this->container['conditionSetActive'] = isset($data['conditionSetActive']) ? $data['conditionSetActive'] : null;
         $this->container['conditionSetName'] = isset($data['conditionSetName']) ? $data['conditionSetName'] : null;
         $this->container['conditionSetId'] = isset($data['conditionSetId']) ? $data['conditionSetId'] : null;
-        $this->container['codepoolName'] = isset($data['codepoolName']) ? $data['codepoolName'] : null;
         $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
         $this->container['usedValue'] = isset($data['usedValue']) ? $data['usedValue'] : null;
@@ -380,25 +368,25 @@ class Code implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets code
+     * Gets name
      *
      * @return string
      */
-    public function getCode()
+    public function getName()
     {
-        return $this->container['code'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets code
+     * Sets name
      *
-     * @param string $code The code of the code
+     * @param string $name name
      *
      * @return $this
      */
-    public function setCode($code)
+    public function setName($name)
     {
-        $this->container['code'] = $code;
+        $this->container['name'] = $name;
 
         return $this;
     }
@@ -423,30 +411,6 @@ class Code implements ModelInterface, ArrayAccess
     public function setNote($note)
     {
         $this->container['note'] = $note;
-
-        return $this;
-    }
-
-    /**
-     * Gets codepoolId
-     *
-     * @return int
-     */
-    public function getCodepoolId()
-    {
-        return $this->container['codepoolId'];
-    }
-
-    /**
-     * Sets codepoolId
-     *
-     * @param int $codepoolId The assigned codepool id
-     *
-     * @return $this
-     */
-    public function setCodepoolId($codepoolId)
-    {
-        $this->container['codepoolId'] = $codepoolId;
 
         return $this;
     }
@@ -567,30 +531,6 @@ class Code implements ModelInterface, ArrayAccess
     public function setConditionSetId($conditionSetId)
     {
         $this->container['conditionSetId'] = $conditionSetId;
-
-        return $this;
-    }
-
-    /**
-     * Gets codepoolName
-     *
-     * @return string
-     */
-    public function getCodepoolName()
-    {
-        return $this->container['codepoolName'];
-    }
-
-    /**
-     * Sets codepoolName
-     *
-     * @param string $codepoolName codepoolName
-     *
-     * @return $this
-     */
-    public function setCodepoolName($codepoolName)
-    {
-        $this->container['codepoolName'] = $codepoolName;
 
         return $this;
     }
