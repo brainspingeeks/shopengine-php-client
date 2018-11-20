@@ -69,6 +69,8 @@ class Codeless implements ModelInterface, ArrayAccess
         'updatedAt' => '\DateTime',
         'createdAt' => '\DateTime',
         'usedValue' => '\SSB\Api\Model\Money',
+        'start' => '\DateTime',
+        'end' => '\DateTime',
         'versionId' => 'int',
         'aggregateId' => 'string'
     ];
@@ -91,6 +93,8 @@ class Codeless implements ModelInterface, ArrayAccess
         'updatedAt' => 'date-time',
         'createdAt' => 'date-time',
         'usedValue' => null,
+        'start' => 'date-time',
+        'end' => 'date-time',
         'versionId' => null,
         'aggregateId' => null
     ];
@@ -134,6 +138,8 @@ class Codeless implements ModelInterface, ArrayAccess
         'updatedAt' => 'updatedAt',
         'createdAt' => 'createdAt',
         'usedValue' => 'usedValue',
+        'start' => 'start',
+        'end' => 'end',
         'versionId' => 'versionId',
         'aggregateId' => 'aggregateId'
     ];
@@ -156,6 +162,8 @@ class Codeless implements ModelInterface, ArrayAccess
         'updatedAt' => 'setUpdatedAt',
         'createdAt' => 'setCreatedAt',
         'usedValue' => 'setUsedValue',
+        'start' => 'setStart',
+        'end' => 'setEnd',
         'versionId' => 'setVersionId',
         'aggregateId' => 'setAggregateId'
     ];
@@ -178,6 +186,8 @@ class Codeless implements ModelInterface, ArrayAccess
         'updatedAt' => 'getUpdatedAt',
         'createdAt' => 'getCreatedAt',
         'usedValue' => 'getUsedValue',
+        'start' => 'getStart',
+        'end' => 'getEnd',
         'versionId' => 'getVersionId',
         'aggregateId' => 'getAggregateId'
     ];
@@ -269,6 +279,8 @@ class Codeless implements ModelInterface, ArrayAccess
         $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
         $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
         $this->container['usedValue'] = isset($data['usedValue']) ? $data['usedValue'] : null;
+        $this->container['start'] = isset($data['start']) ? $data['start'] : null;
+        $this->container['end'] = isset($data['end']) ? $data['end'] : null;
         $this->container['versionId'] = isset($data['versionId']) ? $data['versionId'] : null;
         $this->container['aggregateId'] = isset($data['aggregateId']) ? $data['aggregateId'] : null;
     }
@@ -603,6 +615,54 @@ class Codeless implements ModelInterface, ArrayAccess
     public function setUsedValue($usedValue)
     {
         $this->container['usedValue'] = $usedValue;
+
+        return $this;
+    }
+
+    /**
+     * Gets start
+     *
+     * @return \DateTime
+     */
+    public function getStart()
+    {
+        return $this->container['start'];
+    }
+
+    /**
+     * Sets start
+     *
+     * @param \DateTime $start start
+     *
+     * @return $this
+     */
+    public function setStart($start)
+    {
+        $this->container['start'] = $start;
+
+        return $this;
+    }
+
+    /**
+     * Gets end
+     *
+     * @return \DateTime
+     */
+    public function getEnd()
+    {
+        return $this->container['end'];
+    }
+
+    /**
+     * Sets end
+     *
+     * @param \DateTime $end end
+     *
+     * @return $this
+     */
+    public function setEnd($end)
+    {
+        $this->container['end'] = $end;
 
         return $this;
     }
