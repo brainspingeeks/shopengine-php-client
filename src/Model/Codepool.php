@@ -63,6 +63,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'trackingSlug' => 'string',
         'defaultConditionSet' => '\SSB\Api\Model\ConditionSet',
         'updatedAt' => '\DateTime',
+        'deletedAt' => '\DateTime',
         'statistics' => '\SSB\Api\Model\CodepoolStatistics'
     ];
 
@@ -78,6 +79,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'trackingSlug' => null,
         'defaultConditionSet' => null,
         'updatedAt' => 'date-time',
+        'deletedAt' => 'date-time',
         'statistics' => null
     ];
 
@@ -114,6 +116,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'trackingSlug' => 'trackingSlug',
         'defaultConditionSet' => 'defaultConditionSet',
         'updatedAt' => 'updatedAt',
+        'deletedAt' => 'deletedAt',
         'statistics' => 'statistics'
     ];
 
@@ -129,6 +132,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'trackingSlug' => 'setTrackingSlug',
         'defaultConditionSet' => 'setDefaultConditionSet',
         'updatedAt' => 'setUpdatedAt',
+        'deletedAt' => 'setDeletedAt',
         'statistics' => 'setStatistics'
     ];
 
@@ -144,6 +148,7 @@ class Codepool implements ModelInterface, ArrayAccess
         'trackingSlug' => 'getTrackingSlug',
         'defaultConditionSet' => 'getDefaultConditionSet',
         'updatedAt' => 'getUpdatedAt',
+        'deletedAt' => 'getDeletedAt',
         'statistics' => 'getStatistics'
     ];
 
@@ -213,6 +218,7 @@ class Codepool implements ModelInterface, ArrayAccess
         $this->container['trackingSlug'] = isset($data['trackingSlug']) ? $data['trackingSlug'] : null;
         $this->container['defaultConditionSet'] = isset($data['defaultConditionSet']) ? $data['defaultConditionSet'] : null;
         $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
+        $this->container['deletedAt'] = isset($data['deletedAt']) ? $data['deletedAt'] : null;
         $this->container['statistics'] = isset($data['statistics']) ? $data['statistics'] : null;
     }
 
@@ -381,6 +387,30 @@ class Codepool implements ModelInterface, ArrayAccess
     public function setUpdatedAt($updatedAt)
     {
         $this->container['updatedAt'] = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets deletedAt
+     *
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->container['deletedAt'];
+    }
+
+    /**
+     * Sets deletedAt
+     *
+     * @param \DateTime $deletedAt deletedAt
+     *
+     * @return $this
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->container['deletedAt'] = $deletedAt;
 
         return $this;
     }
