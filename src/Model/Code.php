@@ -58,6 +58,7 @@ class Code implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'status' => 'string',
+        'hidden' => 'bool',
         'validation' => '\SSB\Api\Model\Validation[]',
         'code' => 'string',
         'note' => 'string',
@@ -82,6 +83,7 @@ class Code implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'status' => null,
+        'hidden' => null,
         'validation' => null,
         'code' => null,
         'note' => null,
@@ -127,6 +129,7 @@ class Code implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'status' => 'status',
+        'hidden' => 'hidden',
         'validation' => 'validation',
         'code' => 'code',
         'note' => 'note',
@@ -151,6 +154,7 @@ class Code implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'status' => 'setStatus',
+        'hidden' => 'setHidden',
         'validation' => 'setValidation',
         'code' => 'setCode',
         'note' => 'setNote',
@@ -175,6 +179,7 @@ class Code implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'status' => 'getStatus',
+        'hidden' => 'getHidden',
         'validation' => 'getValidation',
         'code' => 'getCode',
         'note' => 'getNote',
@@ -268,6 +273,7 @@ class Code implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['hidden'] = isset($data['hidden']) ? $data['hidden'] : null;
         $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
         $this->container['code'] = isset($data['code']) ? $data['code'] : null;
         $this->container['note'] = isset($data['note']) ? $data['note'] : null;
@@ -351,6 +357,30 @@ class Code implements ModelInterface, ArrayAccess
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets hidden
+     *
+     * @return bool
+     */
+    public function getHidden()
+    {
+        return $this->container['hidden'];
+    }
+
+    /**
+     * Sets hidden
+     *
+     * @param bool $hidden hidden
+     *
+     * @return $this
+     */
+    public function setHidden($hidden)
+    {
+        $this->container['hidden'] = $hidden;
 
         return $this;
     }
