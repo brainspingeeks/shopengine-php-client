@@ -1,6 +1,6 @@
 <?php
 /**
- * Usages
+ * ShippingCondition
  *
  * PHP version 5
  *
@@ -27,19 +27,17 @@
  */
 
 namespace SSB\Api\Model;
-
-use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * Usages Class Doc Comment
+ * ShippingCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class Usages implements ModelInterface, ArrayAccess
+class ShippingCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -48,7 +46,7 @@ class Usages implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'Usages';
+    protected static $swaggerModelName = 'ShippingCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,9 +54,8 @@ class Usages implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'count' => 'BigDecimal',
-'maxUsages' => 'BigDecimal',
-'total' => 'BigDecimal'    ];
+        'target' => 'string[]',
+'conditions' => '\SSB\Api\Model\Condition[]'    ];
 
     /**
       * Array of property to format mappings. Used for (de)serialization
@@ -66,9 +63,8 @@ class Usages implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'count' => null,
-'maxUsages' => null,
-'total' => null    ];
+        'target' => null,
+'conditions' => null    ];
 
     /**
      * Array of property to type mappings. Used for (de)serialization
@@ -77,7 +73,7 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -87,7 +83,7 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -97,9 +93,8 @@ class Usages implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'count' => 'count',
-'maxUsages' => 'maxUsages',
-'total' => 'total'    ];
+        'target' => 'target',
+'conditions' => 'conditions'    ];
 
     /**
      * Array of attributes to setter functions (for deserialization of responses)
@@ -107,9 +102,8 @@ class Usages implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'count' => 'setCount',
-'maxUsages' => 'setMaxUsages',
-'total' => 'setTotal'    ];
+        'target' => 'setTarget',
+'conditions' => 'setConditions'    ];
 
     /**
      * Array of attributes to getter functions (for serialization of requests)
@@ -117,9 +111,8 @@ class Usages implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'count' => 'getCount',
-'maxUsages' => 'getMaxUsages',
-'total' => 'getTotal'    ];
+        'target' => 'getTarget',
+'conditions' => 'getConditions'    ];
 
     /**
      * Array of attributes where the key is the local name,
@@ -129,7 +122,7 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -139,7 +132,7 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -149,7 +142,7 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -164,12 +157,6 @@ class Usages implements ModelInterface, ArrayAccess
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -179,9 +166,10 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['count'] = isset($data['count']) ? $data['count'] : null;
-        $this->container['maxUsages'] = isset($data['maxUsages']) ? $data['maxUsages'] : null;
-        $this->container['total'] = isset($data['total']) ? $data['total'] : null;
+        parent::__construct($data);
+
+        $this->container['target'] = isset($data['target']) ? $data['target'] : null;
+        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
     }
 
     /**
@@ -191,7 +179,7 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -204,79 +192,58 @@ class Usages implements ModelInterface, ArrayAccess
      */
     public function valid()
     {
+        if (!parent::valid()) {
+            return false;
+        }
 
         return true;
     }
 
 
     /**
-     * Gets count
+     * Gets target
      *
-     * @return BigDecimal
+     * @return string[]
      */
-    public function getCount()
+    public function getTarget()
     {
-        return $this->container['count'];
+        return $this->container['target'];
     }
 
     /**
-     * Sets count
+     * Sets target
      *
-     * @param BigDecimal $count count
+     * @param string[] $target target
      *
      * @return $this
      */
-    public function setCount($count)
+    public function setTarget($target)
     {
-        $this->container['count'] = $count;
+        $this->container['target'] = $target;
 
         return $this;
     }
 
     /**
-     * Gets maxUsages
+     * Gets conditions
      *
-     * @return BigDecimal
+     * @return \SSB\Api\Model\Condition[]
      */
-    public function getMaxUsages()
+    public function getConditions()
     {
-        return $this->container['maxUsages'];
+        return $this->container['conditions'];
     }
 
     /**
-     * Sets maxUsages
+     * Sets conditions
      *
-     * @param BigDecimal $maxUsages maxUsages
+     * @param \SSB\Api\Model\Condition[] $conditions conditions
      *
      * @return $this
      */
-    public function setMaxUsages($maxUsages)
+    public function setConditions($conditions)
     {
-        $this->container['maxUsages'] = $maxUsages;
-
-        return $this;
-    }
-
-    /**
-     * Gets total
-     *
-     * @return BigDecimal
-     */
-    public function getTotal()
-    {
-        return $this->container['total'];
-    }
-
-    /**
-     * Sets total
-     *
-     * @param BigDecimal $total total
-     *
-     * @return $this
-     */
-    public function setTotal($total)
-    {
-        $this->container['total'] = $total;
+        $this->container['conditions'] = $conditions;
 
         return $this;
     }
