@@ -1,6 +1,6 @@
 <?php
 /**
- * StartValidation
+ * CombineableWithEverythingCondition
  *
  * PHP version 5
  *
@@ -31,14 +31,14 @@ namespace SSB\Api\Model;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * StartValidation Class Doc Comment
+ * CombineableWithEverythingCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class StartValidation extends Validation 
+class CombineableWithEverythingCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +47,7 @@ class StartValidation extends Validation
       *
       * @var string
       */
-    protected static $swaggerModelName = 'StartValidation';
+    protected static $swaggerModelName = 'CombineableWithEverythingCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -55,7 +55,7 @@ class StartValidation extends Validation
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'value' => '\DateTime'
+        
     ];
 
     /**
@@ -64,7 +64,7 @@ class StartValidation extends Validation
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'value' => 'date-time'
+        
     ];
 
     /**
@@ -94,7 +94,7 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $attributeMap = [
-        'value' => 'value'
+        
     ];
 
     /**
@@ -103,7 +103,7 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $setters = [
-        'value' => 'setValue'
+        
     ];
 
     /**
@@ -112,7 +112,7 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $getters = [
-        'value' => 'getValue'
+        
     ];
 
     /**
@@ -171,7 +171,6 @@ class StartValidation extends Validation
     {
         parent::__construct($data);
 
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
     }
 
     /**
@@ -183,9 +182,6 @@ class StartValidation extends Validation
     {
         $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -200,30 +196,6 @@ class StartValidation extends Validation
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets value
-     *
-     * @return \DateTime
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param \DateTime $value Start Date
-     *
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
     /**
      * Returns true if offset exists. False otherwise.
      *

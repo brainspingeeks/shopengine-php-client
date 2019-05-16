@@ -1,6 +1,6 @@
 <?php
 /**
- * StartValidation
+ * IgnoreArticle
  *
  * PHP version 5
  *
@@ -28,17 +28,19 @@
  */
 
 namespace SSB\Api\Model;
+
+use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * StartValidation Class Doc Comment
+ * IgnoreArticle Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class StartValidation extends Validation 
+class IgnoreArticle implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +49,7 @@ class StartValidation extends Validation
       *
       * @var string
       */
-    protected static $swaggerModelName = 'StartValidation';
+    protected static $swaggerModelName = 'IgnoreArticle';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -55,7 +57,11 @@ class StartValidation extends Validation
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'value' => '\DateTime'
+        'id' => 'int',
+        'validation' => '\SSB\Api\Model\IgnoreArticleValidation[]',
+        'article' => '\SSB\Api\Model\Article',
+        'updatedAt' => '\DateTime',
+        'createdAt' => '\DateTime'
     ];
 
     /**
@@ -64,7 +70,11 @@ class StartValidation extends Validation
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'value' => 'date-time'
+        'id' => null,
+        'validation' => null,
+        'article' => null,
+        'updatedAt' => 'date-time',
+        'createdAt' => 'date-time'
     ];
 
     /**
@@ -74,7 +84,7 @@ class StartValidation extends Validation
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes + parent::swaggerTypes();
+        return self::$swaggerTypes;
     }
 
     /**
@@ -84,7 +94,7 @@ class StartValidation extends Validation
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats + parent::swaggerFormats();
+        return self::$swaggerFormats;
     }
 
     /**
@@ -94,7 +104,11 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $attributeMap = [
-        'value' => 'value'
+        'id' => 'id',
+        'validation' => 'validation',
+        'article' => 'article',
+        'updatedAt' => 'updatedAt',
+        'createdAt' => 'createdAt'
     ];
 
     /**
@@ -103,7 +117,11 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $setters = [
-        'value' => 'setValue'
+        'id' => 'setId',
+        'validation' => 'setValidation',
+        'article' => 'setArticle',
+        'updatedAt' => 'setUpdatedAt',
+        'createdAt' => 'setCreatedAt'
     ];
 
     /**
@@ -112,7 +130,11 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $getters = [
-        'value' => 'getValue'
+        'id' => 'getId',
+        'validation' => 'getValidation',
+        'article' => 'getArticle',
+        'updatedAt' => 'getUpdatedAt',
+        'createdAt' => 'getCreatedAt'
     ];
 
     /**
@@ -123,7 +145,7 @@ class StartValidation extends Validation
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -133,7 +155,7 @@ class StartValidation extends Validation
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -143,7 +165,7 @@ class StartValidation extends Validation
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -160,6 +182,12 @@ class StartValidation extends Validation
 
     
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -169,9 +197,11 @@ class StartValidation extends Validation
      */
     public function __construct(array $data = null)
     {
-        parent::__construct($data);
-
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['id'] = isset($data['id']) ? $data['id'] : null;
+        $this->container['validation'] = isset($data['validation']) ? $data['validation'] : null;
+        $this->container['article'] = isset($data['article']) ? $data['article'] : null;
+        $this->container['updatedAt'] = isset($data['updatedAt']) ? $data['updatedAt'] : null;
+        $this->container['createdAt'] = isset($data['createdAt']) ? $data['createdAt'] : null;
     }
 
     /**
@@ -181,11 +211,8 @@ class StartValidation extends Validation
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -202,25 +229,121 @@ class StartValidation extends Validation
 
 
     /**
-     * Gets value
+     * Gets id
      *
-     * @return \DateTime
+     * @return int
      */
-    public function getValue()
+    public function getId()
     {
-        return $this->container['value'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets value
+     * Sets id
      *
-     * @param \DateTime $value Start Date
+     * @param int $id id
      *
      * @return $this
      */
-    public function setValue($value)
+    public function setId($id)
     {
-        $this->container['value'] = $value;
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets validation
+     *
+     * @return \SSB\Api\Model\IgnoreArticleValidation[]
+     */
+    public function getValidation()
+    {
+        return $this->container['validation'];
+    }
+
+    /**
+     * Sets validation
+     *
+     * @param \SSB\Api\Model\IgnoreArticleValidation[] $validation validation
+     *
+     * @return $this
+     */
+    public function setValidation($validation)
+    {
+        $this->container['validation'] = $validation;
+
+        return $this;
+    }
+
+    /**
+     * Gets article
+     *
+     * @return \SSB\Api\Model\Article
+     */
+    public function getArticle()
+    {
+        return $this->container['article'];
+    }
+
+    /**
+     * Sets article
+     *
+     * @param \SSB\Api\Model\Article $article article
+     *
+     * @return $this
+     */
+    public function setArticle($article)
+    {
+        $this->container['article'] = $article;
+
+        return $this;
+    }
+
+    /**
+     * Gets updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updatedAt'];
+    }
+
+    /**
+     * Sets updatedAt
+     *
+     * @param \DateTime $updatedAt updatedAt
+     *
+     * @return $this
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->container['updatedAt'] = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Gets createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['createdAt'];
+    }
+
+    /**
+     * Sets createdAt
+     *
+     * @param \DateTime $createdAt createdAt
+     *
+     * @return $this
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->container['createdAt'] = $createdAt;
 
         return $this;
     }

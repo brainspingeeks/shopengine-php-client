@@ -1,6 +1,6 @@
 <?php
 /**
- * StartValidation
+ * IgnoreArticleValidation
  *
  * PHP version 5
  *
@@ -28,17 +28,19 @@
  */
 
 namespace SSB\Api\Model;
+
+use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * StartValidation Class Doc Comment
+ * IgnoreArticleValidation Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class StartValidation extends Validation 
+class IgnoreArticleValidation implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +49,7 @@ class StartValidation extends Validation
       *
       * @var string
       */
-    protected static $swaggerModelName = 'StartValidation';
+    protected static $swaggerModelName = 'IgnoreArticleValidation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -55,7 +57,8 @@ class StartValidation extends Validation
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'value' => '\DateTime'
+        'value' => '\DateTime',
+        'type' => 'string'
     ];
 
     /**
@@ -64,7 +67,8 @@ class StartValidation extends Validation
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'value' => 'date-time'
+        'value' => 'date-time',
+        'type' => null
     ];
 
     /**
@@ -74,7 +78,7 @@ class StartValidation extends Validation
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes + parent::swaggerTypes();
+        return self::$swaggerTypes;
     }
 
     /**
@@ -84,7 +88,7 @@ class StartValidation extends Validation
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats + parent::swaggerFormats();
+        return self::$swaggerFormats;
     }
 
     /**
@@ -94,7 +98,8 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $attributeMap = [
-        'value' => 'value'
+        'value' => 'value',
+        'type' => 'type'
     ];
 
     /**
@@ -103,7 +108,8 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $setters = [
-        'value' => 'setValue'
+        'value' => 'setValue',
+        'type' => 'setType'
     ];
 
     /**
@@ -112,7 +118,8 @@ class StartValidation extends Validation
      * @var string[]
      */
     protected static $getters = [
-        'value' => 'getValue'
+        'value' => 'getValue',
+        'type' => 'getType'
     ];
 
     /**
@@ -123,7 +130,7 @@ class StartValidation extends Validation
      */
     public static function attributeMap()
     {
-        return parent::attributeMap() + self::$attributeMap;
+        return self::$attributeMap;
     }
 
     /**
@@ -133,7 +140,7 @@ class StartValidation extends Validation
      */
     public static function setters()
     {
-        return parent::setters() + self::$setters;
+        return self::$setters;
     }
 
     /**
@@ -143,7 +150,7 @@ class StartValidation extends Validation
      */
     public static function getters()
     {
-        return parent::getters() + self::$getters;
+        return self::$getters;
     }
 
     /**
@@ -160,6 +167,12 @@ class StartValidation extends Validation
 
     
 
+    /**
+     * Associative array for storing property values
+     *
+     * @var mixed[]
+     */
+    protected $container = [];
 
     /**
      * Constructor
@@ -169,9 +182,8 @@ class StartValidation extends Validation
      */
     public function __construct(array $data = null)
     {
-        parent::__construct($data);
-
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
     }
 
     /**
@@ -181,11 +193,8 @@ class StartValidation extends Validation
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = parent::listInvalidProperties();
+        $invalidProperties = [];
 
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -214,13 +223,37 @@ class StartValidation extends Validation
     /**
      * Sets value
      *
-     * @param \DateTime $value Start Date
+     * @param \DateTime $value Date
      *
      * @return $this
      */
     public function setValue($value)
     {
         $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type type
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
 
         return $this;
     }
