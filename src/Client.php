@@ -4,16 +4,18 @@ use GuzzleHttp\Client as GuzzleClient;
 
 class Client
 {
-    const API_VERSION = 'v1';
+    const API_VERSION = 'v2';
 
     public $apiUrl = '';
     public $privateKey = '';
+    public $shop = '';
 
     public $debug = false;
     static public $debugData = [];
 
-    public function __construct($apiUrl, $privateKey, $debug = false)
+    public function __construct($apiUrl, $privateKey, $shop, $debug = false)
     {
+        $this->shop = $shop;
         $this->apiUrl = $apiUrl;
         $this->privateKey = $privateKey;
         $this->debug = $debug;
@@ -59,8 +61,8 @@ class Client
                 $parameter,
                 ['timestamp' => $timestamp, 'signature' => $signature]
             ));
-            
-            $url = self::API_VERSION . "/$resource?$requestQuery";
+
+            $url = self::API_VERSION . "/{$this->shop}/$resource?$requestQuery";
 
             $response = $client->request(
                 $method,
