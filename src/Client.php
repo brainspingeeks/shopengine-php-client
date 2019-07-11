@@ -34,6 +34,11 @@ class Client
         return $this->makeRequest('PATCH', $resource, [], $parameter);
     }
 
+    public function delete($resource, array $parameter = [])
+    {
+        return $this->makeRequest('DELETE', $resource, [], $parameter);
+    }
+
     private function makeRequest($method, $resource, array $parameter, $postParameter = [])
     {
         // validate request
@@ -59,7 +64,7 @@ class Client
                 $parameter,
                 ['timestamp' => $timestamp, 'signature' => $signature]
             ));
-            
+
             $url = self::API_VERSION . "/$resource?$requestQuery";
 
             $response = $client->request(
