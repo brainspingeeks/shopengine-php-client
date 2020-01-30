@@ -1,6 +1,6 @@
 <?php
 /**
- * ExpiresValidation
+ * ContainsArticleCondition
  *
  * PHP version 5
  *
@@ -31,14 +31,14 @@ namespace SSB\Api\Model;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * ExpiresValidation Class Doc Comment
+ * ContainsArticleCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ExpiresValidation extends Validation 
+class ContainsArticleCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +47,7 @@ class ExpiresValidation extends Validation
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ExpiresValidation';
+    protected static $swaggerModelName = 'ContainsArticleCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,7 +56,8 @@ class ExpiresValidation extends Validation
       */
     protected static $swaggerTypes = [
         'type' => 'string',
-        'value' => '\DateTime'
+        'articleSkus' => 'string[]',
+        'conditions' => '\SSB\Api\Model\Condition[]'
     ];
 
     /**
@@ -66,7 +67,8 @@ class ExpiresValidation extends Validation
       */
     protected static $swaggerFormats = [
         'type' => null,
-        'value' => 'date-time'
+        'articleSkus' => null,
+        'conditions' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class ExpiresValidation extends Validation
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'value' => 'value'
+        'articleSkus' => 'articleSkus',
+        'conditions' => 'conditions'
     ];
 
     /**
@@ -107,7 +110,8 @@ class ExpiresValidation extends Validation
      */
     protected static $setters = [
         'type' => 'setType',
-        'value' => 'setValue'
+        'articleSkus' => 'setArticleSkus',
+        'conditions' => 'setConditions'
     ];
 
     /**
@@ -117,7 +121,8 @@ class ExpiresValidation extends Validation
      */
     protected static $getters = [
         'type' => 'getType',
-        'value' => 'getValue'
+        'articleSkus' => 'getArticleSkus',
+        'conditions' => 'getConditions'
     ];
 
     /**
@@ -177,7 +182,8 @@ class ExpiresValidation extends Validation
         parent::__construct($data);
 
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['articleSkus'] = isset($data['articleSkus']) ? $data['articleSkus'] : null;
+        $this->container['conditions'] = isset($data['conditions']) ? $data['conditions'] : null;
     }
 
     /**
@@ -189,9 +195,6 @@ class ExpiresValidation extends Validation
     {
         $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -232,25 +235,49 @@ class ExpiresValidation extends Validation
     }
 
     /**
-     * Gets value
+     * Gets articleSkus
      *
-     * @return \DateTime
+     * @return string[]
      */
-    public function getValue()
+    public function getArticleSkus()
     {
-        return $this->container['value'];
+        return $this->container['articleSkus'];
     }
 
     /**
-     * Sets value
+     * Sets articleSkus
      *
-     * @param \DateTime $value Expire Date
+     * @param string[] $articleSkus articleSkus
      *
      * @return $this
      */
-    public function setValue($value)
+    public function setArticleSkus($articleSkus)
     {
-        $this->container['value'] = $value;
+        $this->container['articleSkus'] = $articleSkus;
+
+        return $this;
+    }
+
+    /**
+     * Gets conditions
+     *
+     * @return \SSB\Api\Model\Condition[]
+     */
+    public function getConditions()
+    {
+        return $this->container['conditions'];
+    }
+
+    /**
+     * Sets conditions
+     *
+     * @param \SSB\Api\Model\Condition[] $conditions conditions
+     *
+     * @return $this
+     */
+    public function setConditions($conditions)
+    {
+        $this->container['conditions'] = $conditions;
 
         return $this;
     }

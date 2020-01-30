@@ -1,6 +1,6 @@
 <?php
 /**
- * ExpiresValidation
+ * AbsolutePriceCondition
  *
  * PHP version 5
  *
@@ -31,14 +31,14 @@ namespace SSB\Api\Model;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * ExpiresValidation Class Doc Comment
+ * AbsolutePriceCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class ExpiresValidation extends Validation 
+class AbsolutePriceCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -47,7 +47,7 @@ class ExpiresValidation extends Validation
       *
       * @var string
       */
-    protected static $swaggerModelName = 'ExpiresValidation';
+    protected static $swaggerModelName = 'AbsolutePriceCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -56,7 +56,8 @@ class ExpiresValidation extends Validation
       */
     protected static $swaggerTypes = [
         'type' => 'string',
-        'value' => '\DateTime'
+        'value' => '\SSB\Api\Model\Money',
+        'applyToArticles' => 'string[]'
     ];
 
     /**
@@ -66,7 +67,8 @@ class ExpiresValidation extends Validation
       */
     protected static $swaggerFormats = [
         'type' => null,
-        'value' => 'date-time'
+        'value' => null,
+        'applyToArticles' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class ExpiresValidation extends Validation
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'value' => 'value'
+        'value' => 'value',
+        'applyToArticles' => 'applyToArticles'
     ];
 
     /**
@@ -107,7 +110,8 @@ class ExpiresValidation extends Validation
      */
     protected static $setters = [
         'type' => 'setType',
-        'value' => 'setValue'
+        'value' => 'setValue',
+        'applyToArticles' => 'setApplyToArticles'
     ];
 
     /**
@@ -117,7 +121,8 @@ class ExpiresValidation extends Validation
      */
     protected static $getters = [
         'type' => 'getType',
-        'value' => 'getValue'
+        'value' => 'getValue',
+        'applyToArticles' => 'getApplyToArticles'
     ];
 
     /**
@@ -178,6 +183,7 @@ class ExpiresValidation extends Validation
 
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
         $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['applyToArticles'] = isset($data['applyToArticles']) ? $data['applyToArticles'] : null;
     }
 
     /**
@@ -189,9 +195,6 @@ class ExpiresValidation extends Validation
     {
         $invalidProperties = parent::listInvalidProperties();
 
-        if ($this->container['value'] === null) {
-            $invalidProperties[] = "'value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -234,7 +237,7 @@ class ExpiresValidation extends Validation
     /**
      * Gets value
      *
-     * @return \DateTime
+     * @return \SSB\Api\Model\Money
      */
     public function getValue()
     {
@@ -244,13 +247,37 @@ class ExpiresValidation extends Validation
     /**
      * Sets value
      *
-     * @param \DateTime $value Expire Date
+     * @param \SSB\Api\Model\Money $value value
      *
      * @return $this
      */
     public function setValue($value)
     {
         $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets applyToArticles
+     *
+     * @return string[]
+     */
+    public function getApplyToArticles()
+    {
+        return $this->container['applyToArticles'];
+    }
+
+    /**
+     * Sets applyToArticles
+     *
+     * @param string[] $applyToArticles applyToArticles
+     *
+     * @return $this
+     */
+    public function setApplyToArticles($applyToArticles)
+    {
+        $this->container['applyToArticles'] = $applyToArticles;
 
         return $this;
     }
