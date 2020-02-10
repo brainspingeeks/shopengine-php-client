@@ -24,7 +24,7 @@
         "SSB\\Api\\ServiceProvider"
       ],
       "aliases": {
-        "SSBApiClient": "SSB\\Api\\Facade"
+        "ShopEngineApiClient": "SSB\\Api\\Facade"
       }
     }
   }
