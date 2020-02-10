@@ -4,15 +4,16 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     public function register()
     {
-        $configPath = __DIR__ . '/../config/shopshop-api.php';
-        $this->mergeConfigFrom($configPath, 'shopshop');
+        $configPath = __DIR__ . '/../config/shopengine-api.php';
+        $this->mergeConfigFrom($configPath, 'shopengine');
 
-        $this->app->bind('SSBApiClient', function ($app) {
-            $apiUrl = config('shopshop-api.apiUrl');
-            $privateKey = config('shopshop-api.privateKey');
+        $this->app->bind('ShopEngineApiClient', function ($app) {
+            $apiUrl = config('shopengine-api.apiUrl');
+            $privateKey = config('shopengine-api.privateKey');
+            $shop = config('shopengine-api.privateKey');
             $debug = !\App::environment(['testing', 'production']);
 
-            return new LaravelClient($apiUrl, $privateKey, $debug);
+            return new LaravelClient($apiUrl, $privateKey, $shop, $debug);
         });
 
         if (class_exists('Barryvdh\Debugbar\LaravelDebugbar')) {
@@ -28,17 +29,17 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
     public function boot()
     {
-        $configPath = __DIR__ . '/../config/shopshop-api.php';
+        $configPath = __DIR__ . '/../config/shopengine-api.php';
         $this->publishes([$configPath => $this->getConfigPath()], 'config');
     }
 
     protected function getConfigPath()
     {
-        return config_path('shopshop-api.php');
+        return config_path('shopengine-api.php');
     }
 
     protected function publishConfig($configPath)
     {
-        $this->publishes([$configPath => config_path('shopshop-api.php')], 'config');
+        $this->publishes([$configPath => config_path('shopengine-api.php')], 'config');
     }
 }
