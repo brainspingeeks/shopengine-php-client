@@ -10,7 +10,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->bind('ShopEngineApiClient', function ($app) {
             $apiUrl = config('shopengine-api.apiUrl');
             $privateKey = config('shopengine-api.privateKey');
-            $shop = config('shopengine-api.privateKey');
+            $shop = config('shopengine-api.shop');
             $debug = !\App::environment(['testing', 'production']);
 
             return new LaravelClient($apiUrl, $privateKey, $shop, $debug);
