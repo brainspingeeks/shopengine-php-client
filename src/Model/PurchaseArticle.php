@@ -65,6 +65,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'price' => '\SSB\Api\Model\Money',
         'name' => 'string',
         'sku' => 'string',
+        'tax' => 'float',
         'originalPrice' => '\SSB\Api\Model\Money'
     ];
 
@@ -82,6 +83,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'price' => null,
         'name' => null,
         'sku' => null,
+        'tax' => 'float',
         'originalPrice' => null
     ];
 
@@ -120,6 +122,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'price' => 'price',
         'name' => 'name',
         'sku' => 'sku',
+        'tax' => 'tax',
         'originalPrice' => 'originalPrice'
     ];
 
@@ -137,6 +140,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'price' => 'setPrice',
         'name' => 'setName',
         'sku' => 'setSku',
+        'tax' => 'setTax',
         'originalPrice' => 'setOriginalPrice'
     ];
 
@@ -154,6 +158,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         'price' => 'getPrice',
         'name' => 'getName',
         'sku' => 'getSku',
+        'tax' => 'getTax',
         'originalPrice' => 'getOriginalPrice'
     ];
 
@@ -225,6 +230,7 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
         $this->container['price'] = isset($data['price']) ? $data['price'] : null;
         $this->container['name'] = isset($data['name']) ? $data['name'] : null;
         $this->container['sku'] = isset($data['sku']) ? $data['sku'] : null;
+        $this->container['tax'] = isset($data['tax']) ? $data['tax'] : null;
         $this->container['originalPrice'] = isset($data['originalPrice']) ? $data['originalPrice'] : null;
     }
 
@@ -440,6 +446,30 @@ class PurchaseArticle implements ModelInterface, ArrayAccess
     public function setSku($sku)
     {
         $this->container['sku'] = $sku;
+
+        return $this;
+    }
+
+    /**
+     * Gets tax
+     *
+     * @return float
+     */
+    public function getTax()
+    {
+        return $this->container['tax'];
+    }
+
+    /**
+     * Sets tax
+     *
+     * @param float $tax Tax of the Article
+     *
+     * @return $this
+     */
+    public function setTax($tax)
+    {
+        $this->container['tax'] = $tax;
 
         return $this;
     }
