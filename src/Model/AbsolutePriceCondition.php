@@ -1,6 +1,6 @@
 <?php
 /**
- * IgnoreArticleValidation
+ * AbsolutePriceCondition
  *
  * PHP version 5
  *
@@ -28,19 +28,17 @@
  */
 
 namespace SSB\Api\Model;
-
-use \ArrayAccess;
 use \SSB\Api\ObjectSerializer;
 
 /**
- * IgnoreArticleValidation Class Doc Comment
+ * AbsolutePriceCondition Class Doc Comment
  *
  * @category Class
  * @package  SSB\Api
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class IgnoreArticleValidation implements ModelInterface, ArrayAccess
+class AbsolutePriceCondition extends Condition 
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +47,7 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'IgnoreArticleValidation';
+    protected static $swaggerModelName = 'AbsolutePriceCondition';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,8 +55,9 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'value' => '\DateTime',
-        'type' => 'string'
+        'type' => 'string',
+        'value' => '\SSB\Api\Model\Money',
+        'applyToArticles' => 'string[]'
     ];
 
     /**
@@ -67,8 +66,9 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'value' => 'date-time',
-        'type' => null
+        'type' => null,
+        'value' => null,
+        'applyToArticles' => null
     ];
 
     /**
@@ -78,7 +78,7 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      */
     public static function swaggerTypes()
     {
-        return self::$swaggerTypes;
+        return self::$swaggerTypes + parent::swaggerTypes();
     }
 
     /**
@@ -88,7 +88,7 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      */
     public static function swaggerFormats()
     {
-        return self::$swaggerFormats;
+        return self::$swaggerFormats + parent::swaggerFormats();
     }
 
     /**
@@ -98,8 +98,9 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'value' => 'value',
-        'type' => 'type'
+        'applyToArticles' => 'applyToArticles'
     ];
 
     /**
@@ -108,8 +109,9 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'value' => 'setValue',
-        'type' => 'setType'
+        'applyToArticles' => 'setApplyToArticles'
     ];
 
     /**
@@ -118,8 +120,9 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'value' => 'getValue',
-        'type' => 'getType'
+        'applyToArticles' => 'getApplyToArticles'
     ];
 
     /**
@@ -130,7 +133,7 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      */
     public static function attributeMap()
     {
-        return self::$attributeMap;
+        return parent::attributeMap() + self::$attributeMap;
     }
 
     /**
@@ -140,7 +143,7 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      */
     public static function setters()
     {
-        return self::$setters;
+        return parent::setters() + self::$setters;
     }
 
     /**
@@ -150,7 +153,7 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      */
     public static function getters()
     {
-        return self::$getters;
+        return parent::getters() + self::$getters;
     }
 
     /**
@@ -167,12 +170,6 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
 
     
 
-    /**
-     * Associative array for storing property values
-     *
-     * @var mixed[]
-     */
-    protected $container = [];
 
     /**
      * Constructor
@@ -182,8 +179,11 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        parent::__construct($data);
+
         $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['value'] = isset($data['value']) ? $data['value'] : null;
+        $this->container['applyToArticles'] = isset($data['applyToArticles']) ? $data['applyToArticles'] : null;
     }
 
     /**
@@ -193,7 +193,7 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
      */
     public function listInvalidProperties()
     {
-        $invalidProperties = [];
+        $invalidProperties = parent::listInvalidProperties();
 
         return $invalidProperties;
     }
@@ -209,30 +209,6 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
         return count($this->listInvalidProperties()) === 0;
     }
 
-
-    /**
-     * Gets value
-     *
-     * @return \DateTime
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param \DateTime $value Date
-     *
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->container['value'] = $value;
-
-        return $this;
-    }
 
     /**
      * Gets type
@@ -254,6 +230,54 @@ class IgnoreArticleValidation implements ModelInterface, ArrayAccess
     public function setType($type)
     {
         $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets value
+     *
+     * @return \SSB\Api\Model\Money
+     */
+    public function getValue()
+    {
+        return $this->container['value'];
+    }
+
+    /**
+     * Sets value
+     *
+     * @param \SSB\Api\Model\Money $value value
+     *
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets applyToArticles
+     *
+     * @return string[]
+     */
+    public function getApplyToArticles()
+    {
+        return $this->container['applyToArticles'];
+    }
+
+    /**
+     * Sets applyToArticles
+     *
+     * @param string[] $applyToArticles applyToArticles
+     *
+     * @return $this
+     */
+    public function setApplyToArticles($applyToArticles)
+    {
+        $this->container['applyToArticles'] = $applyToArticles;
 
         return $this;
     }
