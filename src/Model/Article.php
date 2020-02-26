@@ -13,7 +13,7 @@
 /**
  * ShopShopBox
  *
- * ShopShopBox API Documentation
+ * ShopShopBox API Documentation ## You can filter the results with following filters:   *       'eq' => '=',  *       'ne' => '!=',  *       'like' => 'like',  *        'gt' => '>',  *        'lt' => '<',  *        'ge' => '>=',  *        'le' => '<=', ### example ```php $articles = $client->get('article',['name-eq' => 'mckenzie.com']); ``` Will response with an json-object with all articles named 'mckenzie.com'
  *
  * OpenAPI spec version: 1
  * 
@@ -60,7 +60,7 @@ class Article implements ModelInterface, ArrayAccess
         'name' => 'string',
         'sku' => 'string',
         'price' => '\SSB\Api\Model\Money',
-        'tax' => 'int',
+        'tax' => 'float',
         'status' => 'string',
         'netWeight' => 'int',
         'stock' => 'int',
@@ -80,7 +80,7 @@ class Article implements ModelInterface, ArrayAccess
         'name' => null,
         'sku' => null,
         'price' => null,
-        'tax' => null,
+        'tax' => 'float',
         'status' => null,
         'netWeight' => null,
         'stock' => null,
@@ -213,11 +213,32 @@ class Article implements ModelInterface, ArrayAccess
         return self::$swaggerModelName;
     }
 
+    const TAX_0_DOT_0 = 0.0;
+    const TAX_2_DOT_5 = 2.5;
+    const TAX_7_DOT_0 = 7.0;
+    const TAX_7_DOT_7 = 7.7;
+    const TAX_19_DOT_0 = 19.0;
     const STATUS_AVAILABLE = 'available';
     const STATUS_DISABLED = 'disabled';
     const STATUS_OUT_OF_STOCK = 'out_of_stock';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTaxAllowableValues()
+    {
+        return [
+            self::TAX_0_DOT_0,
+            self::TAX_2_DOT_5,
+            self::TAX_7_DOT_0,
+            self::TAX_7_DOT_7,
+            self::TAX_19_DOT_0,
+        ];
+    }
     
     /**
      * Gets allowable values of the enum
@@ -271,6 +292,14 @@ class Article implements ModelInterface, ArrayAccess
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        $allowedValues = $this->getTaxAllowableValues();
+        if (!is_null($this->container['tax']) && !in_array($this->container['tax'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'tax', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
 
         $allowedValues = $this->getStatusAllowableValues();
         if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
@@ -370,7 +399,7 @@ class Article implements ModelInterface, ArrayAccess
     /**
      * Gets tax
      *
-     * @return int
+     * @return float
      */
     public function getTax()
     {
@@ -380,12 +409,21 @@ class Article implements ModelInterface, ArrayAccess
     /**
      * Sets tax
      *
-     * @param int $tax The tax of the article
+     * @param float $tax The tax of the article
      *
      * @return $this
      */
     public function setTax($tax)
     {
+        $allowedValues = $this->getTaxAllowableValues();
+        if (!is_null($tax) && !in_array($tax, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'tax', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['tax'] = $tax;
 
         return $this;
